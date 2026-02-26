@@ -295,18 +295,12 @@ class TermResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id')
-                    ->label('ID')
-                    ->sortable(),
-                TextColumn::make('slug')
-                    ->label('Slug')
-                    ->searchable()
-                    ->sortable(),
                 TextColumn::make('currentVersion.title')
-                    ->label('Título (ES)')
+                    ->label('Título')
                     ->searchable(query: function (Builder $query, string $search): Builder {
                         return $query->whereHas('currentVersion', fn (Builder $versionQuery): Builder => $versionQuery->where('title', 'like', "%{$search}%"));
-                    }),
+                    })
+                    ->sortable(),
                 TextColumn::make('status')
                     ->label('Estado')
                     ->badge()
@@ -322,6 +316,10 @@ class TermResource extends Resource
                     ->label('Publicado el')
                     ->dateTime()
                     ->sortable(),
+                TextColumn::make('senses_count')
+                    ->label('Nº de acepciones')
+                    ->state(fn (Term $record): int => $record->currentVersion?->senses()->count() ?? 0)
+                    ->sortable(false),
             ])
             ->filters([
                 SelectFilter::make('status')
