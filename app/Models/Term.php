@@ -58,13 +58,4 @@ class Term extends Model
         return $this->hasMany(Media::class);
     }
 
-    public function outgoingRelations(): HasMany
-    {
-        return $this->hasMany(TermRelation::class, 'term_id');
-    }
-
-    public function incomingRelations(): HasMany
-    {
-        return $this->hasMany(TermRelation::class, 'related_term_id');
-    }
 }

@@ -4,7 +4,6 @@ namespace App\Filament\Resources;
 
 use App\Enums\SenseRelationType;
 use App\Enums\TermStatus;
-use App\Enums\TermRelationType;
 use App\Filament\Resources\TermResource\Pages\CreateTerm;
 use App\Filament\Resources\TermResource\Pages\EditTerm;
 use App\Filament\Resources\TermResource\Pages\ListTerms;
@@ -288,31 +287,6 @@ class TermResource extends Resource
                     ])
                     ->defaultItems(0)
                     ->columnSpanFull(),
-                Repeater::make('outgoingRelations')
-                    ->label('Relaciones semánticas')
-                    ->relationship()
-                    ->schema([
-                        Select::make('related_term_id')
-                            ->label('Término relacionado')
-                            ->relationship('relatedTerm', 'slug')
-                            ->searchable()
-                            ->preload()
-                            ->required(),
-                        Select::make('relation_type')
-                            ->label('Tipo de relación')
-                            ->required()
-                            ->options([
-                                TermRelationType::Synonym->value => 'Sinónimo',
-                                TermRelationType::Antonym->value => 'Antónimo',
-                                TermRelationType::Related->value => 'Relacionado',
-                                TermRelationType::Broader->value => 'Más amplio',
-                                TermRelationType::Narrower->value => 'Más específico',
-                                TermRelationType::SeeAlso->value => 'Ver también',
-                            ]),
-                    ])
-                    ->columns(2)
-                    ->defaultItems(0)
-                    ->columnSpanFull(),
             ])
             ->columns(2);
     }
@@ -387,18 +361,6 @@ class TermResource extends Resource
             TermStatus::Review->value => 'Revisión',
             TermStatus::Published->value => 'Publicado',
             TermStatus::Archived->value => 'Archivado',
-        ];
-    }
-
-    public static function getRelationTypeLabels(): array
-    {
-        return [
-            TermRelationType::Synonym->value => 'Sinónimo',
-            TermRelationType::Antonym->value => 'Antónimo',
-            TermRelationType::Related->value => 'Relacionado',
-            TermRelationType::Broader->value => 'Más amplio',
-            TermRelationType::Narrower->value => 'Más específico',
-            TermRelationType::SeeAlso->value => 'Ver también',
         ];
     }
 
