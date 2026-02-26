@@ -47,3 +47,7 @@ En este proyecto la validación se hace manualmente (no se usa flujo de tests au
 - No subir `.env` ni credenciales.
 - Revisar `config/filament-shield.php` y `config/permission.php` antes de producción.
 - Confirmar que `App\Models\User` mantiene `HasRoles` y acceso a Filament (`FilamentUser`).
+
+## Registro de Features
+- Existe un archivo `FEATURES.md` con el listado de funcionalidades de la aplicación.
+- Cuando se pida "crear la feature", significa crear una nueva entrada en `FEATURES.md` con el título y la descripción funcional de la funcionalidad recién implementada.
