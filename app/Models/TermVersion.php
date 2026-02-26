@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class TermVersion extends Model
 {
@@ -15,9 +16,7 @@ class TermVersion extends Model
         'language_code',
         'title',
         'definition',
-        'etymology',
         'notes',
-        'bibliography',
         'version_number',
         'created_by',
         'reviewed_by',
@@ -44,5 +43,10 @@ class TermVersion extends Model
     public function reviewer(): BelongsTo
     {
         return $this->belongsTo(User::class, 'reviewed_by');
+    }
+
+    public function senses(): HasMany
+    {
+        return $this->hasMany(TermVersionSense::class)->orderBy('sense_number');
     }
 }
