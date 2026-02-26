@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
@@ -19,25 +20,61 @@ class DatabaseSeeder extends Seeder
 
     private function seedUsers(): array
     {
-        $roles = collect([
-            config('filament-shield.super_admin.name', 'super_admin'),
-            'editor',
-            'reviewer',
-            'contributor',
-        ])->mapWithKeys(fn (string $name) => [
-            $name => Role::firstOrCreate([
-                'name' => $name,
-                'guard_name' => 'web',
-            ]),
+        $superAdminRoleName = config('filament-shield.super_admin.name', 'super_admin');
+
+        $superAdminRole = Role::firstOrCreate([
+            'name' => $superAdminRoleName,
+            'guard_name' => 'web',
         ]);
 
-        $adminRoleName = config('filament-shield.super_admin.name', 'super_admin');
+        $adminRole = Role::firstOrCreate([
+            'name' => 'Admin',
+            'guard_name' => 'web',
+        ]);
+
+        $editorRole = Role::firstOrCreate([
+            'name' => 'Editor',
+            'guard_name' => 'web',
+        ]);
+
+        $permissions = Permission::query()->where('guard_name', 'web')->get();
+
+        $superAdminRole->syncPermissions($permissions);
+
+        $adminRole->syncPermissions(
+            $permissions->filter(fn (Permission $permission) => Str::endsWith($permission->name, [
+                ':User',
+                ':Term',
+                ':Category',
+                ':TermVersion',
+                ':EditorialLog',
+            ]))
+        );
+
+        $editorRole->syncPermissions(
+            $permissions->filter(function (Permission $permission): bool {
+                if (Str::endsWith($permission->name, [':Term', ':Category', ':TermVersion'])) {
+                    return true;
+                }
+
+                return Str::endsWith($permission->name, ':EditorialLog')
+                    && Str::startsWith($permission->name, ['ViewAny:', 'View:']);
+            })
+        );
 
         return [
-            'admin' => tap($this->firstOrCreateSeedUser('Admin User', 'admin@example.com'), fn (User $user) => $user->syncRoles([$roles[$adminRoleName]])),
-            'editor' => tap($this->firstOrCreateSeedUser('Editor User', 'editor@example.com'), fn (User $user) => $user->syncRoles([$roles['editor']])),
-            'reviewer' => tap($this->firstOrCreateSeedUser('Reviewer User', 'reviewer@example.com'), fn (User $user) => $user->syncRoles([$roles['reviewer']])),
-            'contributor' => tap($this->firstOrCreateSeedUser('Contributor User', 'contributor@example.com'), fn (User $user) => $user->syncRoles([$roles['contributor']])),
+            'superadmin' => tap(
+                $this->firstOrCreateSeedUser('Superadmin User', 'superadmin@example.com'),
+                fn (User $user) => $user->syncRoles([$superAdminRole])
+            ),
+            'admin' => tap(
+                $this->firstOrCreateSeedUser('Admin User', 'admin@example.com'),
+                fn (User $user) => $user->syncRoles([$adminRole])
+            ),
+            'editor' => tap(
+                $this->firstOrCreateSeedUser('Editor User', 'editor@example.com'),
+                fn (User $user) => $user->syncRoles([$editorRole])
+            ),
         ];
     }
 
