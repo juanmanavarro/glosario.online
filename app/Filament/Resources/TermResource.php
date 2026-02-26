@@ -28,6 +28,7 @@ use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 use UnitEnum;
 
 class TermResource extends Resource
@@ -137,8 +138,124 @@ class TermResource extends Resource
                                                         ->orderBy('slug')
                                                         ->pluck('slug', 'id')
                                                         ->all())
+                                                    ->getSearchResultsUsing(function (?string $search): array {
+                                                        $search = trim((string) $search);
+
+                                                        if ($search === '') {
+                                                            return Term::query()
+                                                                ->orderBy('slug')
+                                                                ->limit(50)
+                                                                ->pluck('slug', 'id')
+                                                                ->all();
+                                                        }
+
+                                                        $searchSlug = Str::slug($search);
+                                                        $normalizedSearch = Str::lower($search);
+
+                                                        $hasExactMatch = Term::query()
+                                                            ->when($searchSlug !== '', fn (Builder $query): Builder => $query->where('slug', $searchSlug))
+                                                            ->orWhereHas('currentVersion', function (Builder $query) use ($normalizedSearch): Builder {
+                                                                return $query->whereRaw('LOWER(title) = ?', [$normalizedSearch]);
+                                                            })
+                                                            ->exists();
+
+                                                        if (! $hasExactMatch) {
+                                                            return [
+                                                                "__create__:{$search}" => "Crear \"{$search}\" como término borrador",
+                                                            ];
+                                                        }
+
+                                                        return Term::query()
+                                                            ->where('slug', 'like', "%{$search}%")
+                                                            ->orWhereHas('currentVersion', fn (Builder $query): Builder => $query->where('title', 'like', "%{$search}%"))
+                                                            ->orderBy('slug')
+                                                            ->limit(50)
+                                                            ->pluck('slug', 'id')
+                                                            ->all();
+                                                    })
+                                                    ->getOptionLabelUsing(function (mixed $value): ?string {
+                                                        if (! is_string($value) || ! str_starts_with($value, '__create__:')) {
+                                                            return Term::query()->find($value)?->slug;
+                                                        }
+
+                                                        return 'Crear término';
+                                                    })
+                                                    ->afterStateUpdated(function (\Filament\Schemas\Components\Utilities\Set $set, mixed $state): void {
+                                                        if (! is_string($state) || ! str_starts_with($state, '__create__:')) {
+                                                            return;
+                                                        }
+
+                                                        $title = trim(Str::after($state, '__create__:'));
+                                                        $slug = Str::slug($title);
+
+                                                        if ($title === '' || $slug === '') {
+                                                            $set('related_term_id', null);
+
+                                                            return;
+                                                        }
+
+                                                        $term = Term::query()->firstOrCreate(
+                                                            ['slug' => $slug],
+                                                            [
+                                                                'status' => TermStatus::Draft->value,
+                                                                'published_at' => null,
+                                                                'current_version_id' => null,
+                                                            ]
+                                                        );
+
+                                                        if ($term->wasRecentlyCreated) {
+                                                            $version = $term->versions()->create([
+                                                                'language_code' => 'es',
+                                                                'title' => $title,
+                                                                'definition' => '',
+                                                                'notes' => null,
+                                                                'created_by' => Auth::id(),
+                                                                'reviewed_by' => null,
+                                                                'approved_at' => null,
+                                                            ]);
+
+                                                            $term->forceFill([
+                                                                'current_version_id' => $version->id,
+                                                            ])->save();
+
+                                                            $defaultCategoryId = Category::query()
+                                                                ->where('slug', 'sin-categoria')
+                                                                ->value('id');
+
+                                                            if ($defaultCategoryId) {
+                                                                $term->categories()->syncWithoutDetaching([$defaultCategoryId]);
+                                                            }
+                                                        } elseif (! $term->current_version_id) {
+                                                            $version = $term->versions()
+                                                                ->where('language_code', 'es')
+                                                                ->orderByDesc('version_number')
+                                                                ->first();
+
+                                                            if (! $version) {
+                                                                $version = $term->versions()->create([
+                                                                    'language_code' => 'es',
+                                                                    'title' => $title,
+                                                                    'definition' => '',
+                                                                    'notes' => null,
+                                                                    'created_by' => Auth::id(),
+                                                                    'reviewed_by' => null,
+                                                                    'approved_at' => null,
+                                                                ]);
+                                                            }
+
+                                                            $term->forceFill([
+                                                                'current_version_id' => $version->id,
+                                                            ])->save();
+                                                        }
+
+                                                        $set('related_term_id', $term->id);
+                                                    })
+                                                    ->live()
+                                                    ->searchDebounce(250)
+                                                    ->searchPrompt('Escribe para buscar o crear un término')
+                                                    ->searchingMessage('Buscando término...')
+                                                    ->loadingMessage('Buscando término...')
                                                     ->searchable()
-                                                    ->preload()
                                                     ->required(),
                                                 Select::make('relation_type')
                                                     ->label('Tipo')
