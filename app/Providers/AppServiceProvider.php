@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Filament\Auth\Responses\LoginResponse as CustomFilamentLoginResponse;
 use App\Models\User;
 use App\Models\Term;
 use App\Models\TermVersion;
+use Filament\Auth\Http\Responses\Contracts\LoginResponse as FilamentLoginResponseContract;
 use App\Observers\TermObserver;
 use App\Observers\TermVersionObserver;
 use Illuminate\Support\Facades\Gate;
@@ -17,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(FilamentLoginResponseContract::class, CustomFilamentLoginResponse::class);
     }
 
     /**

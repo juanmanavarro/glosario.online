@@ -17,6 +17,8 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 use UnitEnum;
 
 class UserResource extends Resource
@@ -68,7 +70,22 @@ class UserResource extends Resource
 
     public static function table(Table $table): Table
     {
+        $currentUser = Auth::user();
+        $superAdminRole = config('filament-shield.super_admin.name', 'super_admin');
+        $isAdmin = $currentUser?->roles->contains(fn ($role) => strcasecmp($role->name, 'admin') === 0) ?? false;
+        $isSuperAdmin = $currentUser?->roles->contains(fn ($role) => strcasecmp($role->name, $superAdminRole) === 0) ?? false;
+
         return $table
+            ->modifyQueryUsing(function (Builder $query) use ($isAdmin, $isSuperAdmin, $superAdminRole): Builder {
+                if (! $isAdmin || $isSuperAdmin) {
+                    return $query;
+                }
+
+                return $query->whereDoesntHave(
+                    'roles',
+                    fn (Builder $roleQuery) => $roleQuery->whereRaw('LOWER(name) = ?', [strtolower($superAdminRole)])
+                );
+            })
             ->columns([
                 TextColumn::make('name')
                     ->label('Nombre')

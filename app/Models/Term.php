@@ -15,6 +15,7 @@ class Term extends Model
 
     protected $fillable = [
         'slug',
+        'title_en',
         'status',
         'current_version_id',
         'published_at',

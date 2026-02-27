@@ -37,6 +37,11 @@ class DatabaseSeeder extends Seeder
             'guard_name' => 'web',
         ]);
 
+        $memberRole = Role::firstOrCreate([
+            'name' => 'member',
+            'guard_name' => 'web',
+        ]);
+
         $permissions = Permission::query()->where('guard_name', 'web')->get();
 
         $superAdminRole->syncPermissions($permissions);
@@ -74,6 +79,10 @@ class DatabaseSeeder extends Seeder
             'editor' => tap(
                 $this->firstOrCreateSeedUser('Editor User', 'editor@example.com'),
                 fn (User $user) => $user->syncRoles([$editorRole])
+            ),
+            'member' => tap(
+                $this->firstOrCreateSeedUser('Member User', 'member@example.com'),
+                fn (User $user) => $user->syncRoles([$memberRole])
             ),
         ];
     }

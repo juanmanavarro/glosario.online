@@ -104,6 +104,9 @@ class TermResource extends Resource
                                             $set('slug', Str::slug($state));
                                         }
                                     }),
+                                TextInput::make('title_en')
+                                    ->label('Título (EN)')
+                                    ->maxLength(255),
                                 TextInput::make('slug')
                                     ->label('Slug')
                                     ->readOnly()
@@ -116,15 +119,6 @@ class TermResource extends Resource
                                     ->schema([
                                         Textarea::make('definition')
                                             ->label('Definición')
-                                            ->required(function (\Filament\Schemas\Components\Utilities\Get $get): bool {
-                                                $relations = collect($get('relations') ?? [])
-                                                    ->filter(fn (mixed $row): bool => is_array($row) && (
-                                                        filled($row['related_term_id'] ?? null) ||
-                                                        filled($row['relation_type'] ?? null)
-                                                    ));
-
-                                                return $relations->isEmpty();
-                                            })
                                             ->rows(4)
                                             ->helperText('Texto de la acepción (p. ej. la 1, 2, 3...).')
                                             ->columnSpanFull(),
@@ -255,11 +249,11 @@ class TermResource extends Resource
                                                     ->searchingMessage('Buscando término...')
                                                     ->loadingMessage('Buscando término...')
                                                     ->searchable()
-                                                    ->required(),
+                                                    ->required(fn (\Filament\Schemas\Components\Utilities\Get $get): bool => filled($get('relation_type'))),
                                                 Select::make('relation_type')
                                                     ->label('Tipo')
                                                     ->options(self::getSenseRelationTypeLabels())
-                                                    ->required(),
+                                                    ->required(fn (\Filament\Schemas\Components\Utilities\Get $get): bool => filled($get('related_term_id'))),
                                             ])
                                             ->columns(2)
                                             ->defaultItems(0)
