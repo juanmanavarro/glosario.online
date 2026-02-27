@@ -2,10 +2,25 @@
 
 use App\Models\Term;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('home');
+    $timezone = config('app.timezone');
+    $now = now()->setTimezone($timezone);
+    $cacheKey = 'home:trending-terms:' . $now->toDateString();
+    $expiresAt = $now->copy()->addDay()->startOfDay();
+
+    $trendingTerms = Cache::remember($cacheKey, $expiresAt, fn () => Term::query()
+        ->with('currentVersion')
+        ->whereNotNull('current_version_id')
+        ->inRandomOrder()
+        ->limit(3)
+        ->get());
+
+    return view('home', [
+        'trendingTerms' => $trendingTerms,
+    ]);
 });
 
 Route::get('/browse', function (Request $request) {
