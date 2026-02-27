@@ -40,7 +40,7 @@ Route::get('/browse', function (Request $request) {
         )
         ->orderBy('current_versions.title')
         ->select('terms.*')
-        ->paginate(12)
+        ->paginate(24)
         ->withQueryString();
 
     return view('browse', [

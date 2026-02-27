@@ -72,7 +72,7 @@
 <body
     class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col">
     <header
-        class="w-full flex items-center justify-between px-8 py-5 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-[#15202b]">
+        class="{{ View::hasSection('fixedHeader') ? 'fixed top-0 inset-x-0 z-50' : '' }} w-full flex items-center justify-between px-8 py-5 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-[#15202b]">
         <a class="flex items-center gap-3" href="{{ url('/') }}">
             <div class="size-8 text-primary flex items-center justify-center">
                 <span class="material-symbols-outlined text-3xl">menu_book</span>
@@ -100,17 +100,19 @@
 
     @yield('content')
 
-    <footer class="w-full py-8 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-[#15202b] mt-auto">
-        <div
-            class="max-w-5xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-sm text-slate-500 dark:text-slate-400">
-            <p>© 2023 Glosario. Todos los derechos reservados.</p>
-            <div class="flex gap-6 mt-4 md:mt-0">
-                <a class="hover:text-primary transition-colors" href="#">Privacidad</a>
-                <a class="hover:text-primary transition-colors" href="#">Terminos</a>
-                <a class="hover:text-primary transition-colors" href="#">Contacto</a>
+    @unless (View::hasSection('hideFooter'))
+        <footer class="w-full py-8 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-[#15202b] mt-auto">
+            <div
+                class="max-w-5xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-sm text-slate-500 dark:text-slate-400">
+                <p>© 2023 Glosario. Todos los derechos reservados.</p>
+                <div class="flex gap-6 mt-4 md:mt-0">
+                    <a class="hover:text-primary transition-colors" href="#">Privacidad</a>
+                    <a class="hover:text-primary transition-colors" href="#">Terminos</a>
+                    <a class="hover:text-primary transition-colors" href="#">Contacto</a>
+                </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+    @endunless
 </body>
 
 </html>
