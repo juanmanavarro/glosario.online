@@ -51,7 +51,6 @@ trait ManagesSpanishVersion
     protected function syncSpanishWorkingDraftVersion(Term $term, array $data): void
     {
         $senses = $this->normalizeSenseData($data['senses'] ?? []);
-        $fallbackDefinition = $this->buildFallbackDefinitionFromSenses($senses);
 
         if (blank($data['title'] ?? null) || $senses === []) {
             return;
@@ -72,7 +71,6 @@ trait ManagesSpanishVersion
                 'version_number' => max(1, $nextVersionNumber),
                 'created_by' => Auth::id(),
                 'title' => (string) $data['title'],
-                'definition' => $fallbackDefinition,
                 'notes' => $data['notes'] ?? null,
                 'reviewed_by' => null,
                 'approved_at' => null,
@@ -80,7 +78,6 @@ trait ManagesSpanishVersion
         } else {
             $version->fill([
                 'title' => (string) $data['title'],
-                'definition' => $fallbackDefinition,
                 'notes' => $data['notes'] ?? null,
                 'reviewed_by' => null,
                 'approved_at' => null,
@@ -128,17 +125,8 @@ trait ManagesSpanishVersion
                             : (string) $relation->relation_type,
                     ])
                     ->all(),
-            ])
-            ->all();
-
-        if ($senses === [] && filled($version->definition)) {
-            $senses = [
-                [
-                    'definition' => $version->definition,
-                    'relations' => [],
-                ],
-            ];
-        }
+                    ])
+                    ->all();
 
         return [
             'title' => $version->title,
@@ -194,20 +182,6 @@ trait ManagesSpanishVersion
             ->filter()
             ->values()
             ->all();
-    }
-
-    /**
-     * @param  array<int, array{definition: string, relations: array<int, array{related_term_id:int, relation_type:string}>}>  $senses
-     */
-    protected function buildFallbackDefinitionFromSenses(array $senses): string
-    {
-        foreach ($senses as $sense) {
-            if ($sense['definition'] !== '') {
-                return $sense['definition'];
-            }
-        }
-
-        return '';
     }
 
     /**

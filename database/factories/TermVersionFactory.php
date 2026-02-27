@@ -20,7 +20,6 @@ class TermVersionFactory extends Factory
             'term_id' => Term::factory(),
             'language_code' => 'es',
             'title' => ucfirst(fake()->words(fake()->numberBetween(2, 4), true)),
-            'definition' => fake()->paragraphs(fake()->numberBetween(2, 4), true),
             'notes' => fake()->optional()->paragraph(),
             'created_by' => null,
             'reviewed_by' => null,

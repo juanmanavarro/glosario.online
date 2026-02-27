@@ -35,7 +35,7 @@
                     <div class="flex flex-wrap justify-center gap-2">
                         @foreach ($trendingTerms as $term)
                             <a class="px-3 py-1.5 bg-white dark:bg-[#1a2634] border border-slate-200 dark:border-slate-700 rounded-full text-slate-600 dark:text-slate-300 hover:border-primary hover:text-primary transition-colors"
-                                href="{{ route('browse', ['letter' => \Illuminate\Support\Str::upper(\Illuminate\Support\Str::substr($term->currentVersion?->title ?? $term->title_en ?? $term->slug, 0, 1))]) }}">
+                                href="{{ route('terms.show', $term->slug) }}">
                                 {{ $term->currentVersion?->title ?? $term->title_en ?? $term->slug }}
                             </a>
                         @endforeach

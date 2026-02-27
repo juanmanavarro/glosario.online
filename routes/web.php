@@ -4,6 +4,7 @@ use App\Models\Term;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 
 Route::get('/', function () {
     $timezone = config('app.timezone');
@@ -46,7 +47,7 @@ Route::get('/browse', function (Request $request) {
     }
 
     $terms = Term::query()
-        ->with(['currentVersion', 'categories'])
+        ->with(['currentVersion.senses', 'categories'])
         ->join('term_versions as current_versions', 'current_versions.id', '=', 'terms.current_version_id')
         ->whereNotNull('terms.current_version_id')
         ->when(
@@ -64,6 +65,44 @@ Route::get('/browse', function (Request $request) {
         'terms' => $terms,
     ]);
 })->name('browse');
+
+Route::get('/term/{slug}', function (string $slug) {
+    $baseQuery = Term::query()
+        ->join('term_versions as current_versions', 'current_versions.id', '=', 'terms.current_version_id')
+        ->whereNotNull('terms.current_version_id');
+
+    $availableLetters = (clone $baseQuery)
+        ->selectRaw('UPPER(LEFT(current_versions.title, 1)) as letter')
+        ->distinct()
+        ->pluck('letter')
+        ->filter()
+        ->values();
+
+    $term = Term::query()
+        ->with([
+            'categories',
+            'currentVersion.senses.relations.relatedTerm.currentVersion',
+        ])
+        ->whereNotNull('current_version_id')
+        ->where('slug', $slug)
+        ->firstOrFail();
+
+    $selectedLetter = Str::upper((string) Str::substr(
+        $term->currentVersion?->title ?? $term->title_en ?? $term->slug,
+        0,
+        1
+    ));
+
+    if (! $availableLetters->contains($selectedLetter)) {
+        $selectedLetter = '';
+    }
+
+    return view('term', [
+        'availableLetters' => $availableLetters,
+        'selectedLetter' => $selectedLetter,
+        'term' => $term,
+    ]);
+})->name('terms.show');
 
 Route::get('/login', fn () => redirect('/admin/login'))->name('login');
 

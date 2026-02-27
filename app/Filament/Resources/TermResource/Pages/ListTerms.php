@@ -317,8 +317,6 @@ class ListTerms extends ListRecords
             ->orderByDesc('version_number')
             ->first();
 
-        $fallbackDefinition = $this->buildFallbackDefinition($senses);
-
         if (! $version instanceof TermVersion) {
             $versionNumber = (int) $term->versions()
                 ->where('language_code', 'es')
@@ -329,7 +327,6 @@ class ListTerms extends ListRecords
                 'version_number' => max(1, $versionNumber),
                 'created_by' => Auth::id(),
                 'title' => $title,
-                'definition' => $fallbackDefinition,
                 'notes' => null,
                 'reviewed_by' => null,
                 'approved_at' => null,
@@ -338,7 +335,6 @@ class ListTerms extends ListRecords
 
         $version->fill([
             'title' => $title,
-            'definition' => $fallbackDefinition,
             'notes' => null,
             'reviewed_by' => null,
             'approved_at' => null,
@@ -351,20 +347,6 @@ class ListTerms extends ListRecords
         $version->save();
 
         return $version;
-    }
-
-    /**
-     * @param  array<int,array{definition:string,relations:array<int,array{type:string,title:string}>}>  $senses
-     */
-    private function buildFallbackDefinition(array $senses): string
-    {
-        foreach ($senses as $sense) {
-            if ($sense['definition'] !== '') {
-                return $sense['definition'];
-            }
-        }
-
-        return '';
     }
 
     /**
@@ -494,7 +476,6 @@ class ListTerms extends ListRecords
             'version_number' => 1,
             'created_by' => Auth::id(),
             'title' => $normalizedTitle,
-            'definition' => '',
             'notes' => null,
             'reviewed_by' => null,
             'approved_at' => null,

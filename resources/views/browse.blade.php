@@ -49,7 +49,10 @@
             <div class="flex-1 min-h-0 overflow-y-auto pr-2 pb-20">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
                     @foreach ($terms as $term)
-                        <article
+                        @php
+                            $previewDefinition = trim(strip_tags($term->currentVersion?->senses->first()?->definition ?? ''));
+                        @endphp
+                        <a href="{{ route('terms.show', $term->slug) }}"
                             class="group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 hover:shadow-lg hover:border-primary/30 transition-all duration-300 flex flex-col justify-between">
                             <div>
                                 <div class="flex items-start justify-between mb-3 gap-3">
@@ -77,7 +80,7 @@
                                     @endif
                                 </div>
                                 <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
-                                    {{ \Illuminate\Support\Str::limit(trim(strip_tags($term->currentVersion?->definition ?? 'Sin definicion disponible.')), 180) }}
+                                    {{ \Illuminate\Support\Str::limit($previewDefinition !== '' ? $previewDefinition : 'Sin definicion disponible.', 180) }}
                                 </p>
                             </div>
                             <div class="flex flex-wrap items-center gap-2 mt-auto pt-4 border-t border-slate-100 dark:border-slate-800">
@@ -93,7 +96,7 @@
                                     </span>
                                 @endforelse
                             </div>
-                        </article>
+                        </a>
                     @endforeach
                 </div>
             </div>

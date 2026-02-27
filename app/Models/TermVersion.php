@@ -15,7 +15,6 @@ class TermVersion extends Model
         'term_id',
         'language_code',
         'title',
-        'definition',
         'notes',
         'version_number',
         'created_by',

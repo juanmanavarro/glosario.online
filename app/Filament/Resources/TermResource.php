@@ -200,7 +200,6 @@ class TermResource extends Resource
                                                             $version = $term->versions()->create([
                                                                 'language_code' => 'es',
                                                                 'title' => $title,
-                                                                'definition' => '',
                                                                 'notes' => null,
                                                                 'created_by' => Auth::id(),
                                                                 'reviewed_by' => null,
@@ -228,7 +227,6 @@ class TermResource extends Resource
                                                                 $version = $term->versions()->create([
                                                                     'language_code' => 'es',
                                                                     'title' => $title,
-                                                                    'definition' => '',
                                                                     'notes' => null,
                                                                     'created_by' => Auth::id(),
                                                                     'reviewed_by' => null,
