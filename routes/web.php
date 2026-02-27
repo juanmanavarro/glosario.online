@@ -7,6 +7,8 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::view('/browse', 'browse')->name('browse');
+
 Route::get('/login', fn () => redirect('/admin/login'))->name('login');
 
 Route::middleware('auth')->get('/glosary', function (Request $request) {

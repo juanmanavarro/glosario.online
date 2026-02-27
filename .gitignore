@@ -22,3 +22,6 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
+*.xlsx#
+resources/dictionary_structured_format.csv
+resources/dictionary_structured_format.xlsx

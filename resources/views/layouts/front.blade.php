@@ -73,25 +73,25 @@
     class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col">
     <header
         class="w-full flex items-center justify-between px-8 py-5 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-[#15202b]">
-        <div class="flex items-center gap-3">
+        <a class="flex items-center gap-3" href="{{ url('/') }}">
             <div class="size-8 text-primary flex items-center justify-center">
                 <span class="material-symbols-outlined text-3xl">menu_book</span>
             </div>
             <h2 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Glosario</h2>
-        </div>
+        </a>
         <div class="hidden md:flex items-center gap-8">
             <nav class="flex gap-6">
                 <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors"
-                    href="#">Explorar</a>
+                    href="{{ route('browse') }}">Explorar</a>
                 {{-- <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors"
                     href="#">Acerca de</a>
                 <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors"
                     href="#">Contribuir</a> --}}
             </nav>
-            <button
-                class="bg-primary hover:bg-blue-600 text-white text-sm font-bold px-5 py-2.5 rounded-lg transition-colors shadow-sm">
-                Iniciar sesion
-            </button>
+            <a class="bg-primary hover:bg-blue-600 text-white text-sm font-bold px-5 py-2.5 rounded-lg transition-colors shadow-sm"
+                href="{{ url('/admin') }}">
+                {{ auth()->check() ? 'Panel' : 'Iniciar sesion' }}
+            </a>
         </div>
         <button class="md:hidden text-slate-600 dark:text-slate-400">
             <span class="material-symbols-outlined">menu</span>
