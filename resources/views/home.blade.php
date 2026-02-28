@@ -13,21 +13,22 @@
                 </p>
             </div>
             <div class="w-full max-w-2xl mt-8">
-                <div class="relative group">
+                <form action="{{ route('browse') }}" class="relative group" method="GET">
                     <div
                         class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-slate-400 group-focus-within:text-primary transition-colors">
                         <span class="material-symbols-outlined">search</span>
                     </div>
                     <input
                         class="block w-full h-14 pl-12 pr-4 text-lg text-slate-900 dark:text-white bg-white dark:bg-[#1a2634] border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary placeholder-slate-400 shadow-sm transition-all"
-                        placeholder="Busca un termino, tema o categoria..." type="text" />
+                        autocomplete="off" autocapitalize="none" autocorrect="off" name="q"
+                        placeholder="Busca un termino, tema o categoria..." spellcheck="false" type="search" />
                     <div class="absolute inset-y-0 right-0 flex items-center pr-2">
-                        <button
+                        <button type="submit"
                             class="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors">
-                            <span class="material-symbols-outlined text-xl">mic</span>
+                            <span class="material-symbols-outlined text-xl">arrow_forward</span>
                         </button>
                     </div>
-                </div>
+                </form>
             </div>
             <div class="w-full max-w-2xl pt-4">
                 <div class="flex flex-col md:flex-row items-center justify-center gap-3 text-sm">
