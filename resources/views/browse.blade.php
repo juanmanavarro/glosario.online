@@ -18,7 +18,7 @@
         @endforeach
     </aside>
 
-    <div class="flex-1 flex flex-col h-full min-h-0 p-6 md:p-10 lg:p-16 md:ml-20 overflow-hidden">
+    <div class="flex-1 flex flex-col h-full min-h-0 py-6 px-4 md:py-10 md:px-6 lg:py-16 lg:px-8 md:ml-20 overflow-hidden">
         <div class="md:hidden mb-8">
             <div class="flex overflow-x-auto gap-2 pb-2 scrollbar-hide">
                 @foreach ($availableLetters as $letter)
@@ -51,7 +51,7 @@
         </div>
 
         @if ($terms->isNotEmpty())
-            <div class="flex-1 min-h-0 overflow-y-auto pr-2 pb-20" data-browse-scroll-root>
+            <div class="flex-1 min-h-0 overflow-y-auto pb-20" data-browse-scroll-root>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6" data-browse-grid>
                     @include('partials.browse-term-cards', ['terms' => $terms])
                 </div>
