@@ -18,7 +18,7 @@
         @endforeach
     </aside>
 
-    <div class="flex-1 flex flex-col h-full min-h-0 py-6 px-4 md:py-10 md:px-6 lg:py-16 lg:px-8 md:ml-20 overflow-hidden">
+    <div class="flex-1 flex flex-col h-full min-h-0 pt-4 pb-6 px-4 md:pt-6 md:pb-10 md:px-6 lg:pt-8 lg:pb-16 lg:px-8 md:ml-20 overflow-hidden">
         <div class="md:hidden mb-8">
             <div class="flex overflow-x-auto gap-2 pb-2 scrollbar-hide">
                 @foreach ($availableLetters as $letter)
@@ -29,24 +29,6 @@
                         {{ $letter }}
                     </a>
                 @endforeach
-            </div>
-        </div>
-
-        <div class="mb-8">
-            <div class="flex flex-col">
-                <p
-                    class="text-slate-500 dark:text-slate-400 text-sm"
-                    data-browse-summary
-                    data-total="{{ $terms->total() }}"
-                    data-loaded="{{ $terms->lastItem() ?? 0 }}"
-                    data-letter="{{ $selectedLetter }}">
-                    @if ($terms->total() > 0)
-                        Mostrando {{ $terms->firstItem() }}-{{ $terms->lastItem() }} de {{ $terms->total() }}
-                        términos{{ $selectedLetter !== '' ? ' que empiezan por "' . $selectedLetter . '"' : '' }}
-                    @else
-                        No hay términos{{ $selectedLetter !== '' ? ' para la letra "' . $selectedLetter . '"' : '' }}
-                    @endif
-                </p>
             </div>
         </div>
 
@@ -81,34 +63,14 @@
                 const grid = document.querySelector('[data-browse-grid]');
                 const loader = document.querySelector('[data-browse-loader]');
                 const loaderText = document.querySelector('[data-browse-loader-text]');
-                const summary = document.querySelector('[data-browse-summary]');
 
-                if (!scrollRoot || !grid || !loader || !summary) {
+                if (!scrollRoot || !grid || !loader) {
                     return;
                 }
 
                 let nextPageUrl = loader.dataset.nextPageUrl;
                 let isLoading = false;
-                const total = Number(summary.dataset.total || 0);
-                const selectedLetter = summary.dataset.letter || '';
                 const preloadOffset = 300;
-
-                const updateSummary = (loaded) => {
-                    if (total === 0) {
-                        summary.textContent = selectedLetter !== ''
-                            ? `No hay términos para la letra "${selectedLetter}"`
-                            : 'No hay términos';
-
-                        return;
-                    }
-
-                    const suffix = selectedLetter !== ''
-                        ? ` que empiezan por "${selectedLetter}"`
-                        : '';
-
-                    summary.textContent = `Mostrando 1-${loaded} de ${total} términos${suffix}`;
-                    summary.dataset.loaded = String(loaded);
-                };
 
                 const shouldLoadMore = () => {
                     const loaderRect = loader.getBoundingClientRect();
@@ -148,7 +110,6 @@
 
                         nextPageUrl = payload.next_page_url;
                         loader.dataset.nextPageUrl = nextPageUrl || '';
-                        updateSummary(Number(payload.last_item || summary.dataset.loaded || 0));
 
                         if (!payload.has_more_pages || !nextPageUrl) {
                             loader.hidden = true;

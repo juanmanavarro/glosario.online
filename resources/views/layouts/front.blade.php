@@ -82,8 +82,13 @@
             </a>
             <div class="hidden md:flex items-center gap-8">
                 <nav class="flex gap-6">
+                    @php
+                        $showSearchLink = request()->routeIs('browse', 'terms.show');
+                    @endphp
                     <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors"
-                        href="{{ route('browse') }}">Explorar</a>
+                        href="{{ $showSearchLink ? url('/') : route('browse') }}">
+                        {{ $showSearchLink ? 'Buscar' : 'Explorar' }}
+                    </a>
                     {{-- <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors"
                         href="#">Acerca de</a>
                     <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors"
