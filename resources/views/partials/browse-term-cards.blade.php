@@ -1,6 +1,11 @@
 @foreach ($terms as $term)
     @php
+        $senseCount = $term->currentVersion?->senses?->count() ?? 0;
+        $additionalSensesCount = max($senseCount - 1, 0);
         $previewDefinition = trim(strip_tags($term->currentVersion?->senses->first()?->definition ?? ''));
+        $visibleCategories = $term->categories->reject(
+            fn ($category) => $category->slug === 'sin-categoria'
+        );
     @endphp
     <a href="{{ route('terms.show', $term->slug) }}"
         class="group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 hover:shadow-lg hover:border-primary/30 transition-all duration-300 flex flex-col justify-between">
@@ -31,19 +36,22 @@
             <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
                 {{ \Illuminate\Support\Str::limit($previewDefinition !== '' ? $previewDefinition : 'Sin definicion disponible.', 180) }}
             </p>
+            @if ($additionalSensesCount > 0)
+                <p class="text-xs font-medium text-primary mb-4">
+                    + {{ $additionalSensesCount }}
+                    {{ $additionalSensesCount === 1 ? 'acepción' : 'acepciones' }}
+                </p>
+            @endif
         </div>
-        <div class="flex flex-wrap items-center gap-2 mt-auto pt-4 border-t border-slate-100 dark:border-slate-800">
-            @forelse ($term->categories as $category)
-                <span
-                    class="inline-flex items-center rounded-full bg-slate-100 dark:bg-slate-800 px-2.5 py-0.5 text-xs font-medium text-slate-600 dark:text-slate-400">
-                    {{ $category->name }}
-                </span>
-            @empty
-                <span
-                    class="inline-flex items-center rounded-full bg-slate-100 dark:bg-slate-800 px-2.5 py-0.5 text-xs font-medium text-slate-600 dark:text-slate-400">
-                    Sin categoría
-                </span>
-            @endforelse
-        </div>
+        @if ($visibleCategories->isNotEmpty())
+            <div class="flex flex-wrap items-center gap-2 mt-auto pt-4 border-t border-slate-100 dark:border-slate-800">
+                @foreach ($visibleCategories as $category)
+                    <span
+                        class="inline-flex items-center rounded-full bg-slate-100 dark:bg-slate-800 px-2.5 py-0.5 text-xs font-medium text-slate-600 dark:text-slate-400">
+                        {{ $category->name }}
+                    </span>
+                @endforeach
+            </div>
+        @endif
     </a>
 @endforeach
