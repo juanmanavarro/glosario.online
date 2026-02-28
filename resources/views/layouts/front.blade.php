@@ -71,20 +71,51 @@
 
 <body
     class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen flex flex-col">
+    @php
+        $showSearchLink = request()->routeIs('browse', 'terms.show');
+        $showBrowseHeaderSearch = request()->routeIs('browse');
+    @endphp
     <header
         class="{{ View::hasSection('fixedHeader') ? 'fixed top-0 inset-x-0 z-50' : '' }} w-full border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-[#15202b]">
-        <div class="w-full max-w-[1440px] mx-auto px-4 py-5 flex items-center justify-between">
+        <div class="w-full max-w-[1440px] mx-auto px-4 py-5 flex items-center gap-6">
             <a class="flex items-center gap-3" href="{{ url('/') }}">
                 <div class="size-8 text-primary flex items-center justify-center">
                     <span class="material-symbols-outlined text-3xl">menu_book</span>
                 </div>
                 <h2 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Glosario</h2>
             </a>
-            <div class="hidden md:flex items-center gap-8">
+
+            @if ($showBrowseHeaderSearch)
+                <div class="hidden md:flex flex-1 items-center justify-center gap-4">
+                    <form action="{{ route('browse') }}" class="w-full max-w-md" data-browse-search-form
+                        method="GET">
+                        @if (request()->filled('letter'))
+                            <input name="letter" type="hidden" value="{{ request()->query('letter') }}">
+                        @endif
+                        <label class="relative w-full">
+                            <span
+                                class="material-symbols-outlined pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+                            <input
+                                class="w-full h-11 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-[#1a2634] pl-11 pr-4 text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all"
+                                autocomplete="off" autocapitalize="none" autocorrect="off" name="q"
+                                placeholder="Buscar término..." spellcheck="false" type="search"
+                                data-browse-search-input
+                                value="{{ request()->query('q') }}">
+                        </label>
+                    </form>
+
+                    <div
+                        class="items-center text-sm font-medium text-slate-500 dark:text-slate-400 whitespace-nowrap"
+                        data-browse-results-count>
+                        {{ isset($terms) ? $terms->total() : 0 }} términos
+                    </div>
+                </div>
+            @else
+                <div class="hidden md:block flex-1"></div>
+            @endif
+
+            <div class="hidden md:flex items-center gap-8 ml-auto">
                 <nav class="flex gap-6">
-                    @php
-                        $showSearchLink = request()->routeIs('browse', 'terms.show');
-                    @endphp
                     <a class="text-slate-600 dark:text-slate-400 hover:text-primary dark:hover:text-primary text-sm font-medium transition-colors"
                         href="{{ $showSearchLink ? url('/') : route('browse') }}">
                         {{ $showSearchLink ? 'Buscar' : 'Explorar' }}

@@ -29,6 +29,8 @@ Route::get('/browse', function (Request $request) {
         ->join('term_versions as current_versions', 'current_versions.id', '=', 'terms.current_version_id')
         ->whereNotNull('terms.current_version_id');
 
+    $search = trim((string) $request->query('q', ''));
+
     $availableLetters = (clone $baseQuery)
         ->selectRaw('UPPER(LEFT(current_versions.title, 1)) as letter')
         ->distinct()
@@ -38,11 +40,13 @@ Route::get('/browse', function (Request $request) {
 
     $selectedLetter = strtoupper((string) $request->query('letter', ''));
 
-    if ($selectedLetter === '' && $availableLetters->isNotEmpty()) {
+    if ($search !== '') {
+        $selectedLetter = '';
+    } elseif ($selectedLetter === '' && $availableLetters->isNotEmpty()) {
         $selectedLetter = (string) $availableLetters->first();
     }
 
-    if ($selectedLetter !== '' && ! $availableLetters->contains($selectedLetter)) {
+    if ($search === '' && $selectedLetter !== '' && ! $availableLetters->contains($selectedLetter)) {
         $selectedLetter = '';
     }
 
@@ -51,7 +55,11 @@ Route::get('/browse', function (Request $request) {
         ->join('term_versions as current_versions', 'current_versions.id', '=', 'terms.current_version_id')
         ->whereNotNull('terms.current_version_id')
         ->when(
-            $selectedLetter !== '',
+            $search !== '',
+            fn ($query) => $query->where('current_versions.title', 'like', '%' . $search . '%')
+        )
+        ->when(
+            $search === '' && $selectedLetter !== '',
             fn ($query) => $query->where('current_versions.title', 'like', $selectedLetter . '%')
         )
         ->orderBy('current_versions.title')
@@ -63,8 +71,9 @@ Route::get('/browse', function (Request $request) {
         return response()->json([
             'items' => view('partials.browse-term-cards', ['terms' => $terms])->render(),
             'next_page_url' => $terms->nextPageUrl(),
-            'last_item' => $terms->lastItem(),
             'has_more_pages' => $terms->hasMorePages(),
+            'has_items' => $terms->isNotEmpty(),
+            'total' => $terms->total(),
         ]);
     }
 

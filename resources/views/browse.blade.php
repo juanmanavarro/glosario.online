@@ -32,107 +32,171 @@
             </div>
         </div>
 
-        @if ($terms->isNotEmpty())
-            <div class="flex-1 min-h-0 overflow-y-auto pb-20" data-browse-scroll-root>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6" data-browse-grid>
-                    @include('partials.browse-term-cards', ['terms' => $terms])
-                </div>
-
-                <div
-                    class="flex items-center justify-center py-8 text-sm text-slate-500 dark:text-slate-400"
-                    data-browse-loader
-                    data-next-page-url="{{ $terms->nextPageUrl() }}"
-                    @if (! $terms->hasMorePages()) hidden @endif>
-                    <span data-browse-loader-text>Cargando más términos...</span>
-                </div>
+        <div class="flex-1 min-h-0 overflow-y-auto pb-20" data-browse-scroll-root>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6" data-browse-grid>
+                @include('partials.browse-term-cards', ['terms' => $terms])
             </div>
-        @else
+
             <div
-                class="rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 bg-white/80 dark:bg-slate-900/80 p-10 text-center text-slate-500 dark:text-slate-400">
+                class="rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 bg-white/80 dark:bg-slate-900/80 p-10 text-center text-slate-500 dark:text-slate-400 @if ($terms->isNotEmpty()) hidden @endif"
+                data-browse-empty>
                 No hay términos para mostrar en este filtro.
             </div>
-        @endif
+
+            <div
+                class="flex items-center justify-center py-8 text-sm text-slate-500 dark:text-slate-400 opacity-0 pointer-events-none transition-opacity"
+                data-browse-loader
+                data-next-page-url="{{ $terms->nextPageUrl() }}"
+                @if (! $terms->hasMorePages()) hidden @endif>
+                <span data-browse-loader-text>Cargando más términos...</span>
+            </div>
+        </div>
     </div>
 </main>
 
-@if ($terms->isNotEmpty())
-    @push('scripts')
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                const scrollRoot = document.querySelector('[data-browse-scroll-root]');
-                const grid = document.querySelector('[data-browse-grid]');
-                const loader = document.querySelector('[data-browse-loader]');
-                const loaderText = document.querySelector('[data-browse-loader-text]');
+@push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const scrollRoot = document.querySelector('[data-browse-scroll-root]');
+            const grid = document.querySelector('[data-browse-grid]');
+            const emptyState = document.querySelector('[data-browse-empty]');
+            const loader = document.querySelector('[data-browse-loader]');
+            const loaderText = document.querySelector('[data-browse-loader-text]');
+            const searchForm = document.querySelector('[data-browse-search-form]');
+            const searchInput = document.querySelector('[data-browse-search-input]');
+            const resultsCount = document.querySelector('[data-browse-results-count]');
 
-                if (!scrollRoot || !grid || !loader) {
+            if (!scrollRoot || !grid || !emptyState || !loader || !loaderText) {
+                return;
+            }
+
+            let nextPageUrl = loader.dataset.nextPageUrl;
+            let isLoading = false;
+            let debounceTimer;
+            let searchRequestId = 0;
+            const preloadOffset = 300;
+
+            const updateLoaderState = (hasMorePages, keepVisible = false) => {
+                nextPageUrl = hasMorePages ? loader.dataset.nextPageUrl : '';
+
+                if (!hasMorePages || !nextPageUrl) {
+                    loader.hidden = true;
+                    loader.classList.add('opacity-0', 'pointer-events-none');
+
                     return;
                 }
 
-                let nextPageUrl = loader.dataset.nextPageUrl;
-                let isLoading = false;
-                const preloadOffset = 300;
+                loader.hidden = false;
 
-                const shouldLoadMore = () => {
-                    const loaderRect = loader.getBoundingClientRect();
+                if (keepVisible) {
+                    loader.classList.remove('opacity-0', 'pointer-events-none');
+                } else {
+                    loader.classList.add('opacity-0', 'pointer-events-none');
+                }
+            };
 
-                    return loaderRect.top <= window.innerHeight + preloadOffset;
-                };
+            const applyPayload = (payload, { append = false } = {}) => {
+                if (!append) {
+                    grid.innerHTML = payload.items || '';
+                    window.scrollTo({ top: 0, behavior: 'auto' });
+                } else if (payload.items) {
+                    grid.insertAdjacentHTML('beforeend', payload.items);
+                }
 
-                const loadMore = async () => {
-                    if (!nextPageUrl || isLoading) {
+                emptyState.hidden = Boolean(payload.has_items);
+                loader.dataset.nextPageUrl = payload.next_page_url || '';
+                updateLoaderState(Boolean(payload.has_more_pages));
+
+                if (resultsCount && typeof payload.total !== 'undefined') {
+                    resultsCount.textContent = `${payload.total} términos`;
+                }
+            };
+
+            const fetchPage = async (url, { append = false, requestId = null } = {}) => {
+                if (!append && requestId !== searchRequestId) {
+                    return;
+                }
+
+                isLoading = true;
+                loaderText.textContent = 'Cargando más términos...';
+
+                if (append) {
+                    updateLoaderState(true, true);
+                }
+
+                try {
+                    const requestUrl = new URL(url, window.location.origin);
+                    requestUrl.searchParams.set('fragment', '1');
+
+                    const response = await fetch(requestUrl.toString(), {
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest',
+                            'Accept': 'application/json',
+                        },
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}`);
+                    }
+
+                    const payload = await response.json();
+
+                    if (!append && requestId !== searchRequestId) {
                         return;
                     }
 
-                    isLoading = true;
+                    applyPayload(payload, { append });
+                } catch (error) {
                     loader.hidden = false;
-                    loaderText.textContent = 'Cargando más términos...';
-
-                    try {
-                        const url = new URL(nextPageUrl, window.location.origin);
-                        url.searchParams.set('fragment', '1');
-
-                        const response = await fetch(url.toString(), {
-                            headers: {
-                                'X-Requested-With': 'XMLHttpRequest',
-                                'Accept': 'application/json',
-                            },
-                        });
-
-                        if (!response.ok) {
-                            throw new Error(`HTTP ${response.status}`);
-                        }
-
-                        const payload = await response.json();
-
-                        if (payload.items) {
-                            grid.insertAdjacentHTML('beforeend', payload.items);
-                        }
-
-                        nextPageUrl = payload.next_page_url;
-                        loader.dataset.nextPageUrl = nextPageUrl || '';
-
-                        if (!payload.has_more_pages || !nextPageUrl) {
-                            loader.hidden = true;
-                            window.removeEventListener('scroll', handleScroll);
-                        }
-                    } catch (error) {
-                        loaderText.textContent = 'No se pudieron cargar más términos. Reintenta al hacer scroll.';
-                    } finally {
-                        isLoading = false;
-                    }
-                };
-
-                const handleScroll = () => {
-                    if (shouldLoadMore()) {
-                        loadMore();
-                    }
-                };
-
-                if (nextPageUrl) {
-                    window.addEventListener('scroll', handleScroll, { passive: true });
+                    loader.classList.remove('opacity-0', 'pointer-events-none');
+                    loaderText.textContent = 'No se pudieron cargar más términos. Reintenta al hacer scroll.';
+                } finally {
+                    isLoading = false;
                 }
-            });
-        </script>
-    @endpush
-@endif
+            };
+
+            const shouldLoadMore = () => {
+                const loaderRect = loader.getBoundingClientRect();
+
+                return !loader.hidden && loaderRect.top <= window.innerHeight + preloadOffset;
+            };
+
+            const handleScroll = () => {
+                if (!isLoading && nextPageUrl && shouldLoadMore()) {
+                    fetchPage(nextPageUrl, { append: true });
+                }
+            };
+
+            if (searchForm && searchInput) {
+                searchForm.addEventListener('submit', (event) => {
+                    event.preventDefault();
+
+                    const url = new URL(searchForm.action, window.location.origin);
+                    const formData = new FormData(searchForm);
+
+                    for (const [key, value] of formData.entries()) {
+                        if (String(value).trim() !== '') {
+                            url.searchParams.set(key, String(value));
+                        }
+                    }
+
+                    history.replaceState({}, '', url);
+                    searchRequestId += 1;
+                    fetchPage(url.toString(), { requestId: searchRequestId });
+                });
+
+                searchInput.addEventListener('input', () => {
+                    window.clearTimeout(debounceTimer);
+
+                    debounceTimer = window.setTimeout(() => {
+                        searchForm.requestSubmit();
+                    }, 250);
+                });
+            }
+
+            updateLoaderState(Boolean(nextPageUrl));
+            window.addEventListener('scroll', handleScroll, { passive: true });
+        });
+    </script>
+@endpush
 @endsection
