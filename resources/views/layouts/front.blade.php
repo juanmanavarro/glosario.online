@@ -6,6 +6,8 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>@yield('title', 'Glosario - Busqueda simple')</title>
+    <link href="{{ asset('favicon.svg') }}" rel="icon" sizes="any" type="image/svg+xml" />
+    <link href="{{ asset('favicon.svg') }}" rel="shortcut icon" type="image/svg+xml" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <style>
         @font-face {
