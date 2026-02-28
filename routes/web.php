@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 Route::get('/', function () {
     $timezone = config('app.timezone');
     $now = now()->setTimezone($timezone);
-    $cacheKey = 'home:trending-terms:' . $now->toDateString();
+    $cacheKey = 'home:trending-terms:'.$now->toDateString();
     $expiresAt = $now->copy()->addDay()->startOfDay();
 
     $trendingTerms = Cache::remember($cacheKey, $expiresAt, fn () => Term::query()
@@ -42,8 +42,6 @@ Route::get('/browse', function (Request $request) {
 
     if ($search !== '') {
         $selectedLetter = '';
-    } elseif ($selectedLetter === '' && $availableLetters->isNotEmpty()) {
-        $selectedLetter = (string) $availableLetters->first();
     }
 
     if ($search === '' && $selectedLetter !== '' && ! $availableLetters->contains($selectedLetter)) {
@@ -56,11 +54,11 @@ Route::get('/browse', function (Request $request) {
         ->whereNotNull('terms.current_version_id')
         ->when(
             $search !== '',
-            fn ($query) => $query->where('current_versions.title', 'like', '%' . $search . '%')
+            fn ($query) => $query->where('current_versions.title', 'like', '%'.$search.'%')
         )
         ->when(
             $search === '' && $selectedLetter !== '',
-            fn ($query) => $query->where('current_versions.title', 'like', $selectedLetter . '%')
+            fn ($query) => $query->where('current_versions.title', 'like', $selectedLetter.'%')
         )
         ->orderBy('current_versions.title')
         ->select('terms.*')

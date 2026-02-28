@@ -8,6 +8,12 @@
     <aside
         class="hidden md:flex fixed top-[73px] z-40 flex-col w-20 h-[calc(100vh-73px)] overflow-y-auto border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 items-center py-6 gap-2"
         style="left: max(0px, calc((100vw - 1440px) / 2));">
+        <a class="{{ $selectedLetter === ''
+            ? 'bg-primary text-white shadow-sm scale-105'
+            : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800' }} w-10 h-10 flex items-center justify-center rounded-lg font-medium text-sm transition-all"
+            href="{{ route('browse') }}">
+            #
+        </a>
         @foreach ($availableLetters as $letter)
             <a class="{{ $selectedLetter === $letter
                 ? 'bg-primary text-white shadow-sm scale-105'
@@ -21,6 +27,12 @@
     <div class="flex-1 flex flex-col h-full min-h-0 pt-4 pb-6 px-4 md:pt-6 md:pb-10 md:px-6 lg:pt-8 lg:pb-16 lg:px-8 md:ml-20 overflow-hidden">
         <div class="md:hidden mb-8">
             <div class="flex overflow-x-auto gap-2 pb-2 scrollbar-hide">
+                <a class="{{ $selectedLetter === ''
+                    ? 'bg-primary text-white border-primary'
+                    : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400' }} flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-lg border font-medium text-sm"
+                    href="{{ route('browse') }}">
+                    #
+                </a>
                 @foreach ($availableLetters as $letter)
                     <a class="{{ $selectedLetter === $letter
                         ? 'bg-primary text-white border-primary'
