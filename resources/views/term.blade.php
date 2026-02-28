@@ -2,6 +2,7 @@
 
 @section('title', ($term->currentVersion?->title ?? $term->title_en ?? $term->slug) . ' - Glosario')
 @section('fixedHeader', true)
+@section('hideFooter', true)
 
 @section('content')
     @php
