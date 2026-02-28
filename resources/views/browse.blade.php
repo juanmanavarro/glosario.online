@@ -34,7 +34,12 @@
 
         <div class="mb-8">
             <div class="flex flex-col">
-                <p class="text-slate-500 dark:text-slate-400 text-sm">
+                <p
+                    class="text-slate-500 dark:text-slate-400 text-sm"
+                    data-browse-summary
+                    data-total="{{ $terms->total() }}"
+                    data-loaded="{{ $terms->lastItem() ?? 0 }}"
+                    data-letter="{{ $selectedLetter }}">
                     @if ($terms->total() > 0)
                         Mostrando {{ $terms->firstItem() }}-{{ $terms->lastItem() }} de {{ $terms->total() }}
                         términos{{ $selectedLetter !== '' ? ' que empiezan por "' . $selectedLetter . '"' : '' }}
@@ -46,63 +51,18 @@
         </div>
 
         @if ($terms->isNotEmpty())
-            <div class="flex-1 min-h-0 overflow-y-auto pr-2 pb-20">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
-                    @foreach ($terms as $term)
-                        @php
-                            $previewDefinition = trim(strip_tags($term->currentVersion?->senses->first()?->definition ?? ''));
-                        @endphp
-                        <a href="{{ route('terms.show', $term->slug) }}"
-                            class="group bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 hover:shadow-lg hover:border-primary/30 transition-all duration-300 flex flex-col justify-between">
-                            <div>
-                                <div class="flex items-start justify-between mb-3 gap-3">
-                                    <h2
-                                        class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-primary transition-colors">
-                                        {{ $term->currentVersion?->title ?? $term->title_en ?? $term->slug }}
-                                    </h2>
-                                    @if (auth()->check() && ! auth()->user()->hasRole('member'))
-                                        <span
-                                            @class([
-                                                'inline-flex items-center rounded-full px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wide',
-                                                'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300' => $term->status?->value === 'published',
-                                                'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300' => $term->status?->value === 'review',
-                                                'bg-slate-200 text-slate-700 dark:bg-slate-800 dark:text-slate-300' => $term->status?->value === 'draft',
-                                                'bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-300' => $term->status?->value === 'archived',
-                                            ])>
-                                            {{ match($term->status?->value) {
-                                                'published' => 'Publicado',
-                                                'review' => 'Revision',
-                                                'draft' => 'Borrador',
-                                                'archived' => 'Archivado',
-                                                default => 'Sin estado',
-                                            } }}
-                                        </span>
-                                    @endif
-                                </div>
-                                <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
-                                    {{ \Illuminate\Support\Str::limit($previewDefinition !== '' ? $previewDefinition : 'Sin definicion disponible.', 180) }}
-                                </p>
-                            </div>
-                            <div class="flex flex-wrap items-center gap-2 mt-auto pt-4 border-t border-slate-100 dark:border-slate-800">
-                                @forelse ($term->categories as $category)
-                                    <span
-                                        class="inline-flex items-center rounded-full bg-slate-100 dark:bg-slate-800 px-2.5 py-0.5 text-xs font-medium text-slate-600 dark:text-slate-400">
-                                        {{ $category->name }}
-                                    </span>
-                                @empty
-                                    <span
-                                        class="inline-flex items-center rounded-full bg-slate-100 dark:bg-slate-800 px-2.5 py-0.5 text-xs font-medium text-slate-600 dark:text-slate-400">
-                                        Sin categoría
-                                    </span>
-                                @endforelse
-                            </div>
-                        </a>
-                    @endforeach
+            <div class="flex-1 min-h-0 overflow-y-auto pr-2 pb-20" data-browse-scroll-root>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6" data-browse-grid>
+                    @include('partials.browse-term-cards', ['terms' => $terms])
                 </div>
-            </div>
 
-            <div class="fixed bottom-6 left-1/2 z-40 w-full max-w-[calc(1440px-5rem)] -translate-x-1/2 px-6 md:px-10 lg:px-16">
-                {{ $terms->links('vendor.pagination.browse') }}
+                <div
+                    class="flex items-center justify-center py-8 text-sm text-slate-500 dark:text-slate-400"
+                    data-browse-loader
+                    data-next-page-url="{{ $terms->nextPageUrl() }}"
+                    @if (! $terms->hasMorePages()) hidden @endif>
+                    <span data-browse-loader-text>Cargando más términos...</span>
+                </div>
             </div>
         @else
             <div
@@ -112,4 +72,106 @@
         @endif
     </div>
 </main>
+
+@if ($terms->isNotEmpty())
+    @push('scripts')
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const scrollRoot = document.querySelector('[data-browse-scroll-root]');
+                const grid = document.querySelector('[data-browse-grid]');
+                const loader = document.querySelector('[data-browse-loader]');
+                const loaderText = document.querySelector('[data-browse-loader-text]');
+                const summary = document.querySelector('[data-browse-summary]');
+
+                if (!scrollRoot || !grid || !loader || !summary) {
+                    return;
+                }
+
+                let nextPageUrl = loader.dataset.nextPageUrl;
+                let isLoading = false;
+                const total = Number(summary.dataset.total || 0);
+                const selectedLetter = summary.dataset.letter || '';
+                const preloadOffset = 300;
+
+                const updateSummary = (loaded) => {
+                    if (total === 0) {
+                        summary.textContent = selectedLetter !== ''
+                            ? `No hay términos para la letra "${selectedLetter}"`
+                            : 'No hay términos';
+
+                        return;
+                    }
+
+                    const suffix = selectedLetter !== ''
+                        ? ` que empiezan por "${selectedLetter}"`
+                        : '';
+
+                    summary.textContent = `Mostrando 1-${loaded} de ${total} términos${suffix}`;
+                    summary.dataset.loaded = String(loaded);
+                };
+
+                const shouldLoadMore = () => {
+                    const loaderRect = loader.getBoundingClientRect();
+
+                    return loaderRect.top <= window.innerHeight + preloadOffset;
+                };
+
+                const loadMore = async () => {
+                    if (!nextPageUrl || isLoading) {
+                        return;
+                    }
+
+                    isLoading = true;
+                    loader.hidden = false;
+                    loaderText.textContent = 'Cargando más términos...';
+
+                    try {
+                        const url = new URL(nextPageUrl, window.location.origin);
+                        url.searchParams.set('fragment', '1');
+
+                        const response = await fetch(url.toString(), {
+                            headers: {
+                                'X-Requested-With': 'XMLHttpRequest',
+                                'Accept': 'application/json',
+                            },
+                        });
+
+                        if (!response.ok) {
+                            throw new Error(`HTTP ${response.status}`);
+                        }
+
+                        const payload = await response.json();
+
+                        if (payload.items) {
+                            grid.insertAdjacentHTML('beforeend', payload.items);
+                        }
+
+                        nextPageUrl = payload.next_page_url;
+                        loader.dataset.nextPageUrl = nextPageUrl || '';
+                        updateSummary(Number(payload.last_item || summary.dataset.loaded || 0));
+
+                        if (!payload.has_more_pages || !nextPageUrl) {
+                            loader.hidden = true;
+                            window.removeEventListener('scroll', handleScroll);
+                        }
+                    } catch (error) {
+                        loaderText.textContent = 'No se pudieron cargar más términos. Reintenta al hacer scroll.';
+                    } finally {
+                        isLoading = false;
+                    }
+                };
+
+                const handleScroll = () => {
+                    if (shouldLoadMore()) {
+                        loadMore();
+                    }
+                };
+
+                if (nextPageUrl) {
+                    window.addEventListener('scroll', handleScroll, { passive: true });
+                }
+            });
+        </script>
+    @endpush
+@endif
 @endsection

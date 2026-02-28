@@ -59,6 +59,15 @@ Route::get('/browse', function (Request $request) {
         ->paginate(24)
         ->withQueryString();
 
+    if ($request->boolean('fragment')) {
+        return response()->json([
+            'items' => view('partials.browse-term-cards', ['terms' => $terms])->render(),
+            'next_page_url' => $terms->nextPageUrl(),
+            'last_item' => $terms->lastItem(),
+            'has_more_pages' => $terms->hasMorePages(),
+        ]);
+    }
+
     return view('browse', [
         'availableLetters' => $availableLetters,
         'selectedLetter' => $selectedLetter,
