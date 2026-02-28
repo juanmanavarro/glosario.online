@@ -11,36 +11,14 @@
         $senses = $term->currentVersion?->senses ?? collect();
         $notes = trim((string) ($term->currentVersion?->notes ?? ''));
         $publishedAt = $term->published_at?->format('d/m/Y');
+        $visibleCategories = $term->categories->reject(
+            fn ($category) => in_array($category->slug, ['sin-categoria', 'sin_categoria'], true)
+                || strcasecmp(trim((string) $category->name), 'sin categoria') === 0
+        );
     @endphp
 
-    <main class="flex min-h-[calc(100vh-73px)] w-full max-w-[1440px] mx-auto mt-[73px]">
-        <aside
-            class="hidden md:flex fixed top-[73px] z-40 flex-col w-20 h-[calc(100vh-73px)] overflow-y-auto border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 items-center py-6 gap-2"
-            style="left: max(0px, calc((100vw - 1440px) / 2));">
-            @foreach ($availableLetters as $letter)
-                <a class="{{ $selectedLetter === $letter
-                    ? 'bg-primary text-white shadow-sm scale-105'
-                    : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800' }} w-10 h-10 flex items-center justify-center rounded-lg font-medium text-sm transition-all"
-                    href="{{ route('browse', ['letter' => $letter]) }}">
-                    {{ $letter }}
-                </a>
-            @endforeach
-        </aside>
-
-        <div class="flex-1 p-6 md:p-10 lg:p-16 md:ml-20">
-            <div class="md:hidden mb-8">
-                <div class="flex overflow-x-auto gap-2 pb-2 scrollbar-hide">
-                    @foreach ($availableLetters as $letter)
-                        <a class="{{ $selectedLetter === $letter
-                            ? 'bg-primary text-white border-primary'
-                            : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-400' }} flex-shrink-0 w-10 h-10 flex items-center justify-center rounded-lg border font-medium text-sm"
-                            href="{{ route('browse', ['letter' => $letter]) }}">
-                            {{ $letter }}
-                        </a>
-                    @endforeach
-                </div>
-            </div>
-
+    <main class="min-h-[calc(100vh-73px)] w-full max-w-[1440px] mx-auto mt-[73px]">
+        <div class="p-6 md:p-10 lg:p-16">
             <div class="max-w-5xl mx-auto w-full mb-8">
                 <a class="inline-flex items-center text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-primary transition-colors"
                     href="{{ route('browse', ['letter' => $selectedLetter !== '' ? $selectedLetter : null]) }}">
@@ -101,27 +79,44 @@
                             </h2>
                             <div class="space-y-4">
                                 @foreach ($senses as $sense)
+                                    @php
+                                        $visibleRelations = $sense->relations->filter(
+                                            fn ($relation) => $relation->relatedTerm
+                                        )->sortBy(
+                                            fn ($relation) => match ($relation->relation_type) {
+                                                \App\Enums\SenseRelationType::See => 0,
+                                                \App\Enums\SenseRelationType::SeeAlso => 1,
+                                                default => 2,
+                                            }
+                                        );
+                                        $relationAbbreviations = [
+                                            \App\Enums\SenseRelationType::See->value => 'Véase',
+                                            \App\Enums\SenseRelationType::SeeAlso->value => 'Véase también',
+                                            \App\Enums\SenseRelationType::Synonym->value => 'Sin.',
+                                            \App\Enums\SenseRelationType::Antonym->value => 'Ant.',
+                                            \App\Enums\SenseRelationType::Related->value => 'Rel.',
+                                            \App\Enums\SenseRelationType::Broader->value => 'Gen.',
+                                            \App\Enums\SenseRelationType::Narrower->value => 'Esp.',
+                                        ];
+                                    @endphp
                                     <article class="rounded-lg border border-slate-200 dark:border-slate-800 p-5">
-                                        <div class="flex items-center gap-3 mb-3">
-                                            <span
-                                                class="inline-flex items-center rounded-full bg-primary/10 text-primary px-2.5 py-0.5 text-xs font-semibold">
-                                                {{ $sense->sense_number }}
-                                            </span>
-                                        </div>
-
                                         <p class="text-slate-700 dark:text-slate-300 leading-relaxed">
+                                            <span class="text-lg font-semibold text-slate-900 dark:text-white">{{ $sense->sense_number }}.</span>
                                             {{ trim(strip_tags($sense->definition)) !== '' ? trim(strip_tags($sense->definition)) : 'Sin definicion disponible.' }}
                                         </p>
 
-                                        @if ($sense->relations->isNotEmpty())
-                                            <div class="mt-4 flex flex-wrap gap-2">
-                                                @foreach ($sense->relations as $relation)
-                                                    @if ($relation->relatedTerm)
+                                        @if ($visibleRelations->isNotEmpty())
+                                            <div class="mt-4 space-y-2 text-sm text-slate-600 dark:text-slate-300">
+                                                @foreach ($visibleRelations as $relation)
+                                                    <p>
+                                                        <span class="font-semibold">
+                                                            {{ $relationAbbreviations[$relation->relation_type->value] ?? 'Rel.' }}{{ in_array($relation->relation_type, [\App\Enums\SenseRelationType::See, \App\Enums\SenseRelationType::SeeAlso], true) ? '' : ':' }}
+                                                        </span>
                                                         <a href="{{ route('terms.show', $relation->relatedTerm->slug) }}"
-                                                            class="inline-flex items-center rounded-full bg-slate-100 dark:bg-slate-800 px-3 py-1 text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-primary transition-colors">
+                                                            class="hover:text-primary transition-colors">
                                                             {{ $relation->relatedTerm->currentVersion?->title ?? $relation->relatedTerm->title_en ?? $relation->relatedTerm->slug }}
                                                         </a>
-                                                    @endif
+                                                    </p>
                                                 @endforeach
                                             </div>
                                         @endif
@@ -146,19 +141,16 @@
                         @endif
 
                         <div>
-                            <div class="flex flex-wrap gap-2">
-                                @forelse ($term->categories as $category)
-                                    <span
-                                        class="inline-flex items-center rounded-full bg-blue-50 dark:bg-blue-900/20 px-3 py-1 text-xs font-medium text-primary border border-blue-100 dark:border-blue-900/30">
-                                        {{ $category->name }}
-                                    </span>
-                                @empty
-                                    <span
-                                        class="inline-flex items-center rounded-full bg-slate-100 dark:bg-slate-800 px-3 py-1 text-xs font-medium text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
-                                        Sin categoria
-                                    </span>
-                                @endforelse
-                            </div>
+                            @if ($visibleCategories->isNotEmpty())
+                                <div class="flex flex-wrap gap-2">
+                                    @foreach ($visibleCategories as $category)
+                                        <span
+                                            class="inline-flex items-center rounded-full bg-blue-50 dark:bg-blue-900/20 px-3 py-1 text-xs font-medium text-primary border border-blue-100 dark:border-blue-900/30">
+                                            {{ $category->name }}
+                                        </span>
+                                    @endforeach
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>

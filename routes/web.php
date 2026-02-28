@@ -83,17 +83,6 @@ Route::get('/browse', function (Request $request) {
 })->name('browse');
 
 Route::get('/term/{slug}', function (string $slug) {
-    $baseQuery = Term::query()
-        ->join('term_versions as current_versions', 'current_versions.id', '=', 'terms.current_version_id')
-        ->whereNotNull('terms.current_version_id');
-
-    $availableLetters = (clone $baseQuery)
-        ->selectRaw('UPPER(LEFT(current_versions.title, 1)) as letter')
-        ->distinct()
-        ->pluck('letter')
-        ->filter()
-        ->values();
-
     $term = Term::query()
         ->with([
             'categories',
@@ -109,12 +98,7 @@ Route::get('/term/{slug}', function (string $slug) {
         1
     ));
 
-    if (! $availableLetters->contains($selectedLetter)) {
-        $selectedLetter = '';
-    }
-
     return view('term', [
-        'availableLetters' => $availableLetters,
         'selectedLetter' => $selectedLetter,
         'term' => $term,
     ]);
