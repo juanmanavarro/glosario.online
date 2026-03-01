@@ -25,6 +25,20 @@ Route::get('/', function () {
 });
 
 Route::get('/browse', function (Request $request) {
+    $toRelativeUrl = static function (?string $url): ?string {
+        if (! filled($url)) {
+            return null;
+        }
+
+        $path = parse_url($url, PHP_URL_PATH) ?? '';
+        $query = parse_url($url, PHP_URL_QUERY);
+        $fragment = parse_url($url, PHP_URL_FRAGMENT);
+
+        return $path
+            . ($query ? '?'.$query : '')
+            . ($fragment ? '#'.$fragment : '');
+    };
+
     $baseQuery = Term::query()
         ->join('term_versions as current_versions', 'current_versions.id', '=', 'terms.current_version_id')
         ->whereNotNull('terms.current_version_id');
@@ -69,7 +83,7 @@ Route::get('/browse', function (Request $request) {
     if ($request->boolean('fragment')) {
         return response()->json([
             'items' => view('partials.browse-term-cards', ['terms' => $terms])->render(),
-            'next_page_url' => $terms->nextPageUrl(),
+            'next_page_url' => $toRelativeUrl($terms->nextPageUrl()),
             'has_more_pages' => $terms->hasMorePages(),
             'has_items' => $terms->isNotEmpty(),
             'total' => $terms->total(),
@@ -78,6 +92,7 @@ Route::get('/browse', function (Request $request) {
 
     return view('browse', [
         'availableLetters' => $availableLetters,
+        'nextPageUrl' => $toRelativeUrl($terms->nextPageUrl()),
         'selectedLetter' => $selectedLetter,
         'terms' => $terms,
     ]);

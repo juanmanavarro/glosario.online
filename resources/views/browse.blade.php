@@ -58,7 +58,7 @@
             <div
                 class="flex items-center justify-center py-8 text-sm text-slate-500 dark:text-slate-400 opacity-0 pointer-events-none transition-opacity"
                 data-browse-loader
-                data-next-page-url="{{ $terms->nextPageUrl() }}"
+                data-next-page-url="{{ $nextPageUrl }}"
                 @if (! $terms->hasMorePages()) hidden @endif>
                 <span data-browse-loader-text>Cargando más términos...</span>
             </div>
@@ -138,6 +138,8 @@
 
                 try {
                     const requestUrl = new URL(url, window.location.origin);
+                    requestUrl.protocol = window.location.protocol;
+                    requestUrl.host = window.location.host;
                     requestUrl.searchParams.set('fragment', '1');
 
                     const response = await fetch(requestUrl.toString(), {
