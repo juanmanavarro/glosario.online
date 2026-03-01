@@ -11,10 +11,11 @@
         $senses = $term->currentVersion?->senses ?? collect();
         $notes = trim((string) ($term->currentVersion?->notes ?? ''));
         $publishedAt = $term->published_at?->format('d/m/Y');
-        $backUrl = $previousTermSlug
-            ? route('terms.show', $previousTermSlug)
+        $previousTermTitle = $previousTerm?->currentVersion?->title ?? $previousTerm?->title_en ?? $previousTerm?->slug;
+        $backUrl = $previousTerm
+            ? route('terms.show', $previousTerm->slug)
             : route('browse', ['letter' => $selectedLetter !== '' ? $selectedLetter : null]);
-        $backLabel = $previousTermSlug ? 'Volver al termino anterior' : 'Volver a explorar';
+        $backLabel = $previousTerm ? 'Volver a ' . $previousTermTitle : 'Volver';
         $visibleCategories = $term->categories->reject(
             fn ($category) => in_array($category->slug, ['sin-categoria', 'sin_categoria'], true)
                 || strcasecmp(trim((string) $category->name), 'sin categoria') === 0

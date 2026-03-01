@@ -12,6 +12,15 @@
         {
           "definition": "Forma  o  medio  mediante  el  que  nos  conectamos  a  la  red  de",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -31,6 +40,15 @@
         {
           "definition": "Es  un  programa  de  Adobe  System  Corp.  que  permite  trabajar  con  documentos",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -69,6 +87,15 @@
         {
           "definition": "Adobe  Systems  Incorporated  es  la  empresa  de  software  creadora  de  PDF  y  de",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -88,6 +115,15 @@
         {
           "definition": "Es  uno  de  los  sistemas  de  publicidad  de  Google  en  internet.  Permite  mostrar",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -107,6 +143,15 @@
         {
           "definition": "Es uno de los sistemas de publicidad de Google mediante anuncios publicitarios",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -126,6 +171,15 @@
         {
           "definition": "Programa  informático  (software)  lector  o  recopilador  de",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -157,7 +211,7 @@
     "categories": [
       1
     ],
-    "title_en": "Algoritmo",
+    "title_en": "Algorithm",
     "es_version": {
       "title": "Algoritmo",
       "senses": [
@@ -221,6 +275,15 @@
         {
           "definition": "Sistema  operativo  para  móviles  desarrollado  por  Google  inc.  Plataforma",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -240,6 +303,15 @@
         {
           "definition": "Programa  informático  preparado  para  detectar,  bloquear  y/o  eliminar  un",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -297,6 +369,15 @@
         {
           "definition": "Programa de ayuda encargado de guiar paso a paso al usuario para realizar una",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -373,6 +454,15 @@
         {
           "definition": "Habitual en redes sociales, se trata de una lista automatizada de cuentas",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -392,6 +482,15 @@
         {
           "definition": "Copia de seguridad. Copia de archivos de datos, ficheros y aplicaciones contenidos",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -411,6 +510,15 @@
         {
           "definition": "Característica de cualquier red que permite la conexión de varias redes a",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -468,6 +576,15 @@
         {
           "definition": "Se da el nombre de esta letra griega a las versiones de un programa o aplicación que",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -506,6 +623,15 @@
         {
           "definition": "Es el código en el que se basa el lenguaje de programación informática, reduciendo",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -544,6 +670,15 @@
         {
           "definition": "Error  en  el  código  de  un  programa  que  provoca  inconvenientes  al  usuario.  Para",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -582,6 +717,15 @@
         {
           "definition": "Componente  que  almacena  datos  (en  la  memoria  caché  de  un  dispositivo),",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -639,6 +783,15 @@
         {
           "definition": "Comunicación simultánea y en tiempo real entre dos o más usuarios de internet. Es el",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -658,6 +811,15 @@
         {
           "definition": "Acción no consentida, ofensiva o agresión contra personas, bienes, sistemas",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -715,6 +877,15 @@
         {
           "definition": "Proceso o medida de seguridad utilizada para almacenar o transferir información",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -791,6 +962,15 @@
         {
           "definition": "Dirección de un terminal o dispositivo (ya sea ordenador o móvil) en internet",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -829,6 +1009,15 @@
         {
           "definition": "Aparato, o elementos de un sistema, conectados para poder ser reconocidos",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -848,6 +1037,15 @@
         {
           "definition": "Acción permitida por el sistema operativo consistente en presionar dos veces",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -867,6 +1065,15 @@
         {
           "definition": "Software que puede crear o modificar archivos de texto.",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -886,6 +1093,15 @@
         {
           "definition": "En informática, introducir una orden al sistema para que realice una operación",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -905,6 +1121,15 @@
         {
           "definition": "Insertar o incrustar código de un lenguaje dentro de otro lenguaje de programación.",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -943,6 +1168,15 @@
         {
           "definition": "Término con el que también se denomina al sistema operativo en el que se trabaja.",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -962,6 +1196,15 @@
         {
           "definition": "(Del inglés Online) para indicar que existe conexión entre sistemas o a una red. De",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -1038,6 +1281,15 @@
         {
           "definition": "Software  malicioso  que  “explota”  vulnerabilidades  detectadas  en  determinados",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -1114,6 +1366,15 @@
         {
           "definition": "Sitio web de la red social que lleva tal nombre.",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -1209,6 +1470,15 @@
         {
           "definition": "Datos de firma cifrados de forma que permitan al receptor comprobar la",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -1227,10 +1497,14 @@
       "senses": [
         {
           "definition": "Herramienta de seguridad que controla el tráfico de entrada/salida de una red.",
+          "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
           "relations": [
             {
               "type": "see",
-              "term": "Red"
+              "term": "Internet"
             }
           ]
         }
@@ -1290,6 +1564,15 @@
         {
           "definition": "Programas  que  se  distribuyen  en  internet  gratis.  Si  el  autor  del  software  no",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -1404,6 +1687,15 @@
         {
           "definition": "Buscador  de  páginas  web  en  internet  que  permite  encontrar  información  en",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -1423,6 +1715,15 @@
         {
           "definition": "Software asistente virtual inteligente y predictivo de Google basado",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -1442,6 +1743,15 @@
         {
           "definition": "Software de información geográfica (SIG) que combina imágenes de satélite,",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -1480,6 +1790,15 @@
         {
           "definition": "Sistema de pago móvil de Google que funciona almacenando datos de",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -1575,6 +1894,15 @@
         {
           "definition": "Se denomina así al tipo de malware o software malicioso diseñado para redes que,",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -1594,6 +1922,15 @@
         {
           "definition": "Persona  con  un  conocimiento  profundo  en  seguridad  informática  de  equipos  y",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -1632,6 +1969,15 @@
         {
           "definition": "Sistema de reunión virtual, videoconferencia y mensajería ofrecida por Google.",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -1746,6 +2092,15 @@
         {
           "definition": "Sistema central que permite a los usuarios conectarse y comunicarse con otros sistemas",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -1822,6 +2177,15 @@
         {
           "definition": "Programa que permite establecer contacto para llevar a cabo mensajería instantánea",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -1841,6 +2205,15 @@
         {
           "definition": "Sistema para identificar a los usuarios en un programa, dispositivo, punto",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -1936,6 +2309,15 @@
         {
           "definition": "Acción de comunicación efectiva entre usuarios de internet.",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -1955,6 +2337,15 @@
         {
           "definition": "Aplicación,  sistema  o  software  con  el  que  se  puede  interactuar.  También",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -1974,6 +2365,15 @@
         {
           "definition": "Red  mundial  descentralizada  de  redes  de  comunicación  y  equipos  informáticos",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -1993,6 +2393,15 @@
         {
           "definition": "Página o red interna de una empresa conectada mediante internet que permite",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -2012,6 +2421,15 @@
         {
           "definition": "Conjunto numérico que identifica la conexión de un equipo o dispositivo dentro de una red",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -2050,6 +2468,15 @@
         {
           "definition": "Lenguaje  de  programación,  desarrollado  por  Sun  Microsystem,  que  permite  crear",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -2088,6 +2515,15 @@
         {
           "definition": "Melodía pegadiza utilizada en anuncios publicitarios en internet.",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -2107,6 +2543,15 @@
         {
           "definition": "Dispositivo para manejar ciertas funciones de los programas especialmente para la",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -2145,6 +2590,15 @@
         {
           "definition": "Núcleo. Parte fundamental de un sistema operativo que activa el hardware y provee",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -2316,6 +2770,15 @@
         {
           "definition": "El funcionamiento de cualquier sistema informático está basado en el",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -2430,6 +2893,15 @@
         {
           "definition": "Web  orientada  a  red  social  de  profesionales,  fundada  a  finales  del  año  2002  y",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -2487,6 +2959,15 @@
         {
           "definition": "Núcleo de sistema operativo de código abierto, de libre acceso y modificación de su",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -2525,6 +3006,15 @@
         {
           "definition": "Clave,  contraseña  o  keyword  con  el  que  una  persona  está  registrada  en  un  sistema",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -2544,6 +3034,15 @@
         {
           "definition": "Salir del sistema, desconectarse.",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -2582,6 +3081,15 @@
         {
           "definition": "Metodología  de  Análisis  y  Gestión  sistemática  de  Riesgos  de  Sistemas  de",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -2620,6 +3128,15 @@
         {
           "definition": "Protocolo  de  internet  o  instrucción  de  código  que  se  utiliza  para  enviar  correo",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -2639,6 +3156,15 @@
         {
           "definition": "Programa (software) malicioso. Software diseñado para infiltrarse y causar daños",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -2696,6 +3222,15 @@
         {
           "definition": "Lo contrario de minimizar. Cuando trabajamos en sistema de Windows podemos",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -2791,6 +3326,15 @@
         {
           "definition": "Sistema que propicia el intercambio de mensajes de equipo a",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -2810,6 +3354,15 @@
         {
           "definition": "Relación de programas disponibles que aparecen en pantalla y nos permite visualizar",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -2905,6 +3458,15 @@
         {
           "definition": "Forma reducida de una página web.",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -2924,6 +3486,15 @@
         {
           "definition": "Es el buscador o programa al que se accede a través el navegador",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -2962,6 +3533,15 @@
         {
           "definition": "Formato digital de archivo de sonido que reduce el tamaño del archivo original para una",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -3038,6 +3618,15 @@
         {
           "definition": "Programa  o  aplicación  que  facilita  los  usuarios  el  acceso  a  páginas  web  en",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -3057,6 +3646,15 @@
         {
           "definition": "Reglas no escritas de comportamiento entre los usuarios de internet.",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -3095,6 +3693,15 @@
         {
           "definition": "Dispositivo conectado a una red o punto en el que se producen dos o más conexiones",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -3171,6 +3778,15 @@
         {
           "definition": "Equipamiento  de  hardware  y  software,  servicios  y  técnicas  que  se  soportan",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -3285,6 +3901,15 @@
         {
           "definition": "Programas cuyo código de programación permite el acceso de forma libre con la",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -3361,6 +3986,15 @@
         {
           "definition": "Programa de cliente de correo electrónico de Microsoft que puede ser utilizado",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -3437,6 +4071,15 @@
         {
           "definition": "Software  que  se  distribuye  para  la  corrección  de  fallos  detectados  en  el  original.",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -3475,6 +4118,15 @@
         {
           "definition": "Dispositivo  periférico  extraíble  y  portátil  de  almacenamiento  de  datos  que  se",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -3589,6 +4241,15 @@
         {
           "definition": "Término procedente de la práctica de copia de software ilegal o sin",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -3760,6 +4421,15 @@
         {
           "definition": "Entidad que proporciona acceso a internet.",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -3779,6 +4449,15 @@
         {
           "definition": "Aplicación que conecta una red local con internet y es configurable para filtrar que",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -3798,6 +4477,15 @@
         {
           "definition": "Es un programa de hojas de cálculo, uno de los más usados junto con Excel",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -3817,6 +4505,15 @@
         {
           "definition": "Consulta o búsqueda en una base de datos.",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -3855,6 +4552,15 @@
         {
           "definition": "Librería de gráficos en 2D para sistemas operativos Apple Macintosh que permite",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -3874,6 +4580,15 @@
         {
           "definition": "Programa  y reproductor multimedia (Quicktime Player) desarrollados por Apple",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -3987,6 +4702,10 @@
       "senses": [
         {
           "definition": "Interconexión e intercomunicación entre dispositivos hardware y software que permite",
+          "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
           "relations": [
             {
               "type": "see",
@@ -4069,6 +4788,15 @@
         {
           "definition": "Guardar una copia de los datos, registros o ficheros que contienen información.",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -4126,6 +4854,15 @@
         {
           "definition": "Enrutador o buscador de ruta que se encarga de analizar el paquete de software de",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -4221,6 +4958,15 @@
         {
           "definition": "Motor de búsqueda de información en internet o buscador.",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -4259,6 +5005,15 @@
         {
           "definition": "Ordenador central de un sistema de red que almacena datos de forma centralizada,",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -4278,6 +5033,15 @@
         {
           "definition": "Software  cedido  por  su  creador  con  el  fin  de  que  sean  probados  de  forma",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -4297,6 +5061,15 @@
         {
           "definition": "Conjunto de programas que interactúan en un equipo para permitir",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -4335,6 +5108,15 @@
         {
           "definition": "Televisión inteligente, ya que tienen integrados servicios de internet.",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -4354,6 +5136,15 @@
         {
           "definition": "Programas escritos en un lenguaje interpretable por el equipo informático que",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -4373,6 +5164,15 @@
         {
           "definition": "Software que respeta la libertad del usuario, ateniéndose a 4 libertades:",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -4411,6 +5211,15 @@
         {
           "definition": "Programa (malware) espía capaz de leer y/o almacenar información de nuestro",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -4487,6 +5296,15 @@
         {
           "definition": "Conjunto de protocolos que rigen la transmisión de información en una red. Ofrece",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -4506,6 +5324,15 @@
         {
           "definition": "Programa de mensajería instantánea multiplataforma, de origen ruso, aparecido",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -4525,6 +5352,15 @@
         {
           "definition": "Protocolo de red que permite acceder a otra máquina para manejarla remotamente.",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -4544,6 +5380,15 @@
         {
           "definition": "Etapa del desarrollo de un sistema en la que se somete a una serie de pruebas a",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -4620,6 +5465,15 @@
         {
           "definition": "Red de internet estructurada en capas que destaca por el anonimato de las comunicaciones",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -4639,6 +5493,15 @@
         {
           "definition": "Cantidad de datos intercambiados en el uso de un sitio web. Viene determinado",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -4658,6 +5521,15 @@
         {
           "definition": "Usuario de internet en general, y las redes sociales en particular, que publica mensajes",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -4677,6 +5549,15 @@
         {
           "definition": "Programa malicioso que, bajo una apariencia inofensiva, se ejecuta de manera",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -4696,6 +5577,15 @@
         {
           "definition": "Red social de microblogging que destaca por su rapidez, inmediatez e interacción",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -4734,6 +5624,15 @@
         {
           "definition": "Sistema operativo portable, multitarea y multiusuario desarrollado a finales de los 70",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -4753,6 +5652,15 @@
         {
           "definition": "En español actualización. Medio por el que una versión de software,",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -4772,6 +5680,15 @@
         {
           "definition": "Cadena de caracteres que designa una dirección única de internet. Es la dirección que",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -4829,6 +5746,15 @@
         {
           "definition": "Programa malicioso que se instala en el ordenador de un usuario sin el",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -4886,6 +5812,15 @@
         {
           "definition": "Lenguaje de programación dirigida por eventos desarrollada por Microsoft a",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -4962,6 +5897,15 @@
         {
           "definition": "Un sistema de entretenimiento para el hogar que reproduce videojuegos",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -4981,6 +5925,15 @@
         {
           "definition": "Juegos  y  programas  de  carácter  lúdico  que  necesitan  ser  ejecutados  en",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -5000,6 +5953,15 @@
         {
           "definition": "Programa malicioso que se instala en el ordenador de un usuario sin el",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -5057,6 +6019,15 @@
         {
           "definition": "Lenguaje de programación dirigida por eventos desarrollada por Microsoft a",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -5133,6 +6104,15 @@
         {
           "definition": "Un sistema de entretenimiento para el hogar que reproduce videojuegos",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -5152,6 +6132,15 @@
         {
           "definition": "Juegos  y  programas  de  carácter  lúdico  que  necesitan  ser  ejecutados  en",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -5190,6 +6179,15 @@
         {
           "definition": "Pequeña  cámara  digital  compatible  con  la  red,  que  permite  establecer",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -5304,6 +6302,15 @@
         {
           "definition": "La definición académica es: sistema de información distribuido, basado en hipertexto,",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -5323,6 +6330,15 @@
         {
           "definition": "Aunque técnicamente no es un sistema operativo (contiene realmente uno, antes",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -5342,6 +6358,15 @@
         {
           "definition": "(Wireless Local Area Network) Redes de área local a las que un usuario puede tener",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -5361,6 +6386,15 @@
         {
           "definition": "Plataforma de networking en internet, donde se pueden gestionar y establecer contactos",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -5380,6 +6414,15 @@
         {
           "definition": "Año  2000  o  efecto  2000.  Bug  o  error  de  software  causado,  en  los  primeros  años  de",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -5399,6 +6442,15 @@
         {
           "definition": "Empresa pionera en internet, muy popular en los inicios de la web, con su directorio",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -5418,6 +6470,15 @@
         {
           "definition": "Red  social  empresarial  y  de  networking  de  Microsoft  Office  utilizada  para  las",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null
@@ -5456,6 +6517,15 @@
         {
           "definition": "Usuario  de  internet  que  se  gana  la  vida  a  través  de  su  canal  de  Youtube,",
           "relations": []
+        },
+        {
+          "definition": "Concepto relacionado dentro del ámbito de las tecnologías de la información y la comunicación.",
+          "relations": [
+            {
+              "type": "see",
+              "term": "Internet"
+            }
+          ]
         }
       ],
       "notes": null

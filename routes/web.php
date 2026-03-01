@@ -99,18 +99,19 @@ Route::get('/term/{slug}', function (Request $request, string $slug) {
         1
     ));
 
-    $previousTermSlug = null;
+    $previousTerm = null;
     $from = trim((string) $request->query('from', ''));
 
     if ($from !== '' && $from !== $term->slug) {
-        $previousTermSlug = Term::query()
+        $previousTerm = Term::query()
+            ->with('currentVersion')
             ->whereNotNull('current_version_id')
             ->where('slug', $from)
-            ->value('slug');
+            ->first();
     }
 
     return view('term', [
-        'previousTermSlug' => $previousTermSlug,
+        'previousTerm' => $previousTerm,
         'selectedLetter' => $selectedLetter,
         'term' => $term,
     ]);
