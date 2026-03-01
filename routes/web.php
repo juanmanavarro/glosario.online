@@ -11,13 +11,24 @@ Route::get('/', function () {
     $now = now()->setTimezone($timezone);
     $cacheKey = 'home:trending-terms:'.$now->toDateString();
     $expiresAt = $now->copy()->addDay()->startOfDay();
-
-    $trendingTerms = Cache::remember($cacheKey, $expiresAt, fn () => Term::query()
+    $resolveTrendingTerms = static fn () => Term::query()
         ->with('currentVersion')
         ->whereNotNull('current_version_id')
         ->inRandomOrder()
         ->limit(3)
-        ->get());
+        ->get();
+
+    $trendingTerms = Cache::get($cacheKey);
+
+    if (! $trendingTerms instanceof \Illuminate\Support\Collection || $trendingTerms->isEmpty()) {
+        $trendingTerms = $resolveTrendingTerms();
+
+        if ($trendingTerms->isNotEmpty()) {
+            Cache::put($cacheKey, $trendingTerms, $expiresAt);
+        } else {
+            Cache::forget($cacheKey);
+        }
+    }
 
     return view('home', [
         'trendingTerms' => $trendingTerms,
