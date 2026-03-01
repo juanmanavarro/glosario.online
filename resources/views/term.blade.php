@@ -11,6 +11,10 @@
         $senses = $term->currentVersion?->senses ?? collect();
         $notes = trim((string) ($term->currentVersion?->notes ?? ''));
         $publishedAt = $term->published_at?->format('d/m/Y');
+        $backUrl = $previousTermSlug
+            ? route('terms.show', $previousTermSlug)
+            : route('browse', ['letter' => $selectedLetter !== '' ? $selectedLetter : null]);
+        $backLabel = $previousTermSlug ? 'Volver al termino anterior' : 'Volver a explorar';
         $visibleCategories = $term->categories->reject(
             fn ($category) => in_array($category->slug, ['sin-categoria', 'sin_categoria'], true)
                 || strcasecmp(trim((string) $category->name), 'sin categoria') === 0
@@ -21,9 +25,9 @@
         <div class="p-6 md:p-10 lg:p-16">
             <div class="max-w-5xl mx-auto w-full mb-8">
                 <a class="inline-flex items-center text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-primary transition-colors"
-                    href="{{ route('browse', ['letter' => $selectedLetter !== '' ? $selectedLetter : null]) }}">
+                    href="{{ $backUrl }}">
                     <span class="material-symbols-outlined text-[20px] mr-1">arrow_back</span>
-                    Volver a explorar
+                    {{ $backLabel }}
                 </a>
             </div>
 
@@ -112,7 +116,7 @@
                                                         <span class="font-semibold">
                                                             {{ $relationAbbreviations[$relation->relation_type->value] ?? 'Rel.' }}{{ in_array($relation->relation_type, [\App\Enums\SenseRelationType::See, \App\Enums\SenseRelationType::SeeAlso], true) ? '' : ':' }}
                                                         </span>
-                                                        <a href="{{ route('terms.show', $relation->relatedTerm->slug) }}"
+                                                        <a href="{{ route('terms.show', ['slug' => $relation->relatedTerm->slug, 'from' => $term->slug]) }}"
                                                             class="hover:text-primary transition-colors">
                                                             {{ $relation->relatedTerm->currentVersion?->title ?? $relation->relatedTerm->title_en ?? $relation->relatedTerm->slug }}
                                                         </a>

@@ -83,7 +83,7 @@ Route::get('/browse', function (Request $request) {
     ]);
 })->name('browse');
 
-Route::get('/term/{slug}', function (string $slug) {
+Route::get('/term/{slug}', function (Request $request, string $slug) {
     $term = Term::query()
         ->with([
             'categories',
@@ -99,7 +99,18 @@ Route::get('/term/{slug}', function (string $slug) {
         1
     ));
 
+    $previousTermSlug = null;
+    $from = trim((string) $request->query('from', ''));
+
+    if ($from !== '' && $from !== $term->slug) {
+        $previousTermSlug = Term::query()
+            ->whereNotNull('current_version_id')
+            ->where('slug', $from)
+            ->value('slug');
+    }
+
     return view('term', [
+        'previousTermSlug' => $previousTermSlug,
         'selectedLetter' => $selectedLetter,
         'term' => $term,
     ]);
