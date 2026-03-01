@@ -34,6 +34,7 @@ Route::get('/browse', function (Request $request) {
     $availableLetters = (clone $baseQuery)
         ->selectRaw('UPPER(LEFT(current_versions.title, 1)) as letter')
         ->distinct()
+        ->orderBy('letter')
         ->pluck('letter')
         ->filter()
         ->values();
