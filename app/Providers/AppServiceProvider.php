@@ -10,6 +10,7 @@ use Filament\Auth\Http\Responses\Contracts\LoginResponse as FilamentLoginRespons
 use App\Observers\TermObserver;
 use App\Observers\TermVersionObserver;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -27,6 +28,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $appUrl = rtrim((string) config('app.url'), '/');
+
+        if (str_starts_with($appUrl, 'https://')) {
+            URL::forceRootUrl($appUrl);
+            URL::forceScheme('https');
+        }
+
         Gate::before(function (User $user, string $ability): ?bool {
             return $user->hasRole(config('filament-shield.super_admin.name', 'super_admin')) ? true : null;
         });
