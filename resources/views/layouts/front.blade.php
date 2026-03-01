@@ -69,6 +69,11 @@
             },
         }
     </script>
+    <script async src="https://plausible.juanma.app/js/pa-OXsTDjxb0PXdnLL_zOZbn.js"></script>
+    <script>
+        window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+        plausible.init()
+    </script>
 </head>
 
 <body
@@ -144,8 +149,8 @@
         <footer class="w-full py-8 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-[#15202b] mt-auto">
             <div
                 class="w-full max-w-[1440px] mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-sm text-slate-500 dark:text-slate-400">
-                <p>© 2023 Glosario. Todos los derechos reservados.</p>
-                <div class="flex gap-6 mt-4 md:mt-0">
+                <p>© {{ now()->year }} Glosario. Todos los derechos reservados.</p>
+                <div class="hidden flex gap-6 mt-4 md:mt-0">
                     <a class="hover:text-primary transition-colors" href="#">Privacidad</a>
                     <a class="hover:text-primary transition-colors" href="#">Terminos</a>
                     <a class="hover:text-primary transition-colors" href="#">Contacto</a>
