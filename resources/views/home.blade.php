@@ -6,10 +6,10 @@
             <div class="space-y-4">
                 <h1
                     class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-                    Aclarando la <br /> terminologia del mundo.
+                    Tu glosario, sin limites.
                 </h1>
                 <p class="text-slate-500 dark:text-slate-400 text-lg md:text-xl max-w-2xl mx-auto font-light">
-                    Una palabra a la vez. Descubre definiciones, contexto y matices para miles de terminos.
+                    Crea, organiza y consulta terminos con un sistema disenado para equipos, comunidades y proyectos.
                 </p>
             </div>
             <div class="w-full max-w-2xl mt-8">

@@ -150,10 +150,8 @@
             <div
                 class="w-full max-w-[1440px] mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-sm text-slate-500 dark:text-slate-400">
                 <p>© {{ now()->year }} Glosario. Todos los derechos reservados.</p>
-                <div class="hidden flex gap-6 mt-4 md:mt-0">
-                    <a class="hover:text-primary transition-colors" href="#">Privacidad</a>
-                    <a class="hover:text-primary transition-colors" href="#">Terminos</a>
-                    <a class="hover:text-primary transition-colors" href="#">Contacto</a>
+                <div class="flex gap-6 mt-4 md:mt-0">
+                    <a class="hover:text-primary transition-colors" href="mailto:hi@juanmanavar.ro">Contacto</a>
                 </div>
             </div>
         </footer>
