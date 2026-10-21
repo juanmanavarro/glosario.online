@@ -1,0 +1,14 @@
+[phases.setup]
+nixpkgsArchive = "e24b4c09e963677b1beea49d411cd315a024ad3a"
+# Load filter in the CGI children of the new upstream security regression tests.
+nixPkgs = [
+    '''(php.buildEnv { version = "8.2.35"; hash = "sha256-D0Pv0awk1PkAAsjU1XC/TE1Z+hQxO/JwqujPBNnf3vM="; extensions = { enabled, ... }: map (ext: if ext.extensionName == "filter" then ext.overrideAttrs (old: { postPatch = (old.postPatch or "") + "\nsubstituteInPlace ext/filter/tests/oom_filter_{default_encoded,input,input_array}.phpt --replace-fail \"getenv('TEST_PHP_CGI_EXECUTABLE'), '-n',\" \"getenv('TEST_PHP_CGI_EXECUTABLE'), '-n', '-d', 'extension=' . __DIR__ . '/../modules/filter.so',\"\n"; }) else ext) enabled; })''',
+    '''(php.buildEnv { version = "8.2.35"; hash = "sha256-D0Pv0awk1PkAAsjU1XC/TE1Z+hQxO/JwqujPBNnf3vM="; extensions = { enabled, ... }: map (ext: if ext.extensionName == "filter" then ext.overrideAttrs (old: { postPatch = (old.postPatch or "") + "\nsubstituteInPlace ext/filter/tests/oom_filter_{default_encoded,input,input_array}.phpt --replace-fail \"getenv('TEST_PHP_CGI_EXECUTABLE'), '-n',\" \"getenv('TEST_PHP_CGI_EXECUTABLE'), '-n', '-d', 'extension=' . __DIR__ . '/../modules/filter.so',\"\n"; }) else ext) enabled; }).packages.composer''',
+    'nginx',
+    'libmysqlclient',
+    'nodejs_22',
+]
+
+
+[phases.build]
+cmds = ["php -r 'exit(version_compare(PHP_VERSION, \"8.2.35\", \">=\") ? 0 : 1);'", "php-fpm -v", "..."]
